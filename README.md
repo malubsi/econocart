@@ -3,7 +3,7 @@
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=pmdsys)](https://sonarqube.com/dashboard/index/pmdsys)
 
 # EconoCart
-Laboratório de Engenharia de Software (LES)
+Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra.
 ## MiniMundo
 Um estabelecimento que comercializa lanches possui uma demanda semanal de produtos a serem comprados para a confecção dos lanches que serão comercializados durante aquela semana. Entretanto esse
 processo exige que o responsável pela compra anote todos os produtos que deverão ser comprados, assim como realize uma pesquisa entre os supermercados para identificar qual produto possui
