@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/malubsi/pmdsys.svg?branch=master)](https://travis-ci.org/malubsi/pmdsys)
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=pmdsys)](https://sonarqube.com/dashboard/index/pmdsys)
 
-# PMDSYS
+# EconoCart
 Laboratório de Engenharia de Software (LES)
 ## MiniMundo
 Um estabelecimento que comercializa lanches possui uma demanda semanal de produtos a serem comprados para a confecção dos lanches que serão comercializados durante aquela semana. Entretanto esse
