@@ -1,0 +1,40 @@
+language: node_js
+node_js:
+  - "4"
+  
+jdk:
+  - oraclejdk8
+  
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+  sonarqube:
+    organization: "adlerosn-github"
+    token: $SONAR_TOKEN
+
+services:
+  - docker
+
+install:
+  - docker build -t sonarqube-sonartsplugin .
+  - docker run -d -p 127.0.0.1:29000:9000 -p 127.0.0.1:29092:9092 --name sonar sonarqube-sonartsplugin
+
+before_script:
+    - cd PASTA_RAIZ_PROJETO
+    - npm install
+    - npm install -g cordova
+    - npm install -g ionic
+    - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+script: 
+  - docker ps | grep -q sonar
+  - npm test
+  - cd ../pmdsys
+  - ionic platform add browser
+  - ionic build browser --prod
+  - cd ..
+  - sonar-scanner
+
+notifications:
+  slack: econocart:HmGTsUw1lVIfPG29d8JGjP5c
