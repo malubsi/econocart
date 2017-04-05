@@ -3,7 +3,9 @@ sudo: required
 
 language: node_js
 node_js:
-  - "4"
+  - node
+  - 6
+  - 7
   
 jdk:
   - oraclejdk8
@@ -25,6 +27,7 @@ install:
   - docker run -d -p 127.0.0.1:29000:9000 -p 127.0.0.1:29092:9092 --name sonar sonarqube-sonartsplugin
 
 before_script:
+    - npm install -g npm@latest
     - npm install
     - npm install -g cordova
     - npm install -g ionic
