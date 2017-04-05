@@ -11,7 +11,8 @@ addons:
       - oracle-java8-installer
   sonarqube:
     organization: "adlerosn-github"
-    token: $SONAR_TOKEN
+    token:
+      secure: "XXznsCQZ52V61N3+GfbCDY8mbrCEcr2xX7oOFSRgKWkEldeO1ddtGzOhRXCguFEREKdLvGXUlHBC1FbPtQItjMcLaXOjuGReCHxwn3qW3B09dtSEZKiGS9CbSFAu6Q8s5cp+xYniGdhahAUhwZtyVo1F0ihHQ7x3BYg0K+uvf+i1HxvjPb3Ny+PFRywMMSt4B2n3k9Ftg6VNsa2WOXpBJOZ+1h+onhqOi+QfOm2xz8fCeAwTPX5Ax9qVDY+1vg0+5I+v7SDDhXhtyxv26opaZqV0XRnwuFbcvoLLIznDmsagDBRH1A8sWdYnu9wzZoz+CgVeFy+jiV/nC1gu5a4pezxPY8GOc4Daw1v1oCB3s/WFZKYHeLalLNRmgiMCKYfMZM9I7KjEivFp8I/dYGZo2IR3eVD0qeQK5+BUBVFtWmKyM4b8BYGseZ2zkg6BURToh8LgP7qiNcQcZhgx1Vn0PL2Vs19a7UvVM42C46gL34IECcS7lB2do1kvkpT7GH74oJh7sggly/MGhsCEosRha3kz1l1EpNcpywXj2E8zYQWPg/Oj+0xjMw7R4rG4DEjQDEBKl83scbg5QTVxtE9n2sNV8I6udRxLcoRT5mtdPpuzsDTEbd5bFvYQL9QnxPxv04q2u340kIHaUbLWbLfivcAomFd1dL8y/yy8O6kPm+U="
 
 services:
   - docker
