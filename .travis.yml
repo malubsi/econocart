@@ -21,7 +21,6 @@ install:
   - docker run -d -p 127.0.0.1:29000:9000 -p 127.0.0.1:29092:9092 --name sonar sonarqube-sonartsplugin
 
 before_script:
-    - cd PASTA_RAIZ_PROJETO
     - npm install
     - npm install -g cordova
     - npm install -g ionic
