@@ -3,17 +3,23 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
-import { SocialSharing } from '@ionic-native/social-sharing';
+import { SocialSharing } from "@ionic-native/social-sharing";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SocialSharingService } from "../service/socialsharing/socialsharingservice";
+import { StarterService } from "../service/starter-service/starter.service";
+import { UnitService } from "../service/dao-service/unit.service";
+import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
+import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit/modal-cadastro-unit";
+
 
 
 @NgModule({
   declarations: [
     MyApp,
     Page1,
-    Page2
+    Page2,
+    PageListUnit, ModalCadastroUnit
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -22,13 +28,14 @@ import { SocialSharingService } from "../service/socialsharing/socialsharingserv
   entryComponents: [
     MyApp,
     Page1,
-    Page2
+    Page2,
+    PageListUnit, ModalCadastroUnit
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SocialSharing,
-    SocialSharingService,
+    SocialSharingService, StarterService, UnitService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+        <button (click)="cancel()" icon-right ion-button>
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+        <ion-title>Cadastrar Unidade</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+            <ion-label stacked>Sigla</ion-label>
+            <ion-input type="text" [(ngModel)]="unit.sInitials"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Descrição</ion-label>
+            <ion-textarea rows="6" [(ngModel)]="unit.sDescription" placeholder="Descreva sobre a unidade"></ion-textarea>
+        </ion-item>
+    </ion-list>
+    <button ion-button full (click)="salvar()">Salvar</button>
+
+</ion-content>

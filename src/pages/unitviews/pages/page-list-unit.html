@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Unidades</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of units">
+            <ion-item (click)="edit(item)">
+                {{item.sInitials}}
+            </ion-item>
+            <ion-item-options>
+                <button ion-button color="danger" (click)="delete(item)">Excluir</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="insert(item)"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+</ion-content>

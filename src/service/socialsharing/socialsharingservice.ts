@@ -1,6 +1,7 @@
-import { SocialSharing } from '@ionic-native/social-sharing';
+import { SocialSharing } from "@ionic-native/social-sharing";
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+
 
 
 @Injectable()
