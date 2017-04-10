@@ -28,7 +28,7 @@ export class ModalCadastroUnit {
     }
 
     salvar() {
-        if (this.unit.sInitials == "") {
+        if (this.unit.sInitials != "") {
             if (this.unit.nId > 0) {
                 this.unitService.update(this.unit);
             } else {
@@ -36,7 +36,7 @@ export class ModalCadastroUnit {
             }
             this.viewCtrl.dismiss(this.unit);
         } else {
-            alert("Por favor coloque uma siga para a unidade.");
+            alert("Por favor coloque uma sigla para a unidade.");
         }
     }
 
