@@ -28,7 +28,7 @@ export class ModalCadastroUnit {
     }
 
     salvar() {
-        if (this.unit.sInitials != "") {
+        if ((typeof (this.unit.sInitials) !== 'undefined')) {
             if (this.unit.nId > 0) {
                 this.unitService.update(this.unit);
             } else {
