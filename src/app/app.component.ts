@@ -6,6 +6,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { StarterService } from "../service/starter-service/starter.service";
 import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
+import { PageListProduct } from "../pages/productviews/pages/page-list-product/page-list-product";
 
 
 @Component({
@@ -25,7 +26,9 @@ export class MyApp {
     this.pages = [
       { title: 'Page One', component: Page1 },
       { title: 'Page Two', component: Page2 },
+      { title: 'Produtos', component: PageListProduct },
       { title: 'Unidades', component: PageListUnit }
+
     ];
 
   }

@@ -6,11 +6,14 @@ import { Page2 } from '../pages/page2/page2';
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { SocialSharingService } from "../service/socialsharing/socialsharingservice";
 import { StarterService } from "../service/starter-service/starter.service";
 import { UnitService } from "../service/dao-service/unit.service";
 import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
 import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit/modal-cadastro-unit";
+import { PageListProduct } from "../pages/productviews/pages/page-list-product/page-list-product";
+import { ModalCadastroProduct } from "../pages/productviews/modal/modal-cadastro-product/modal-cadastro-product";
 
 
 
@@ -19,7 +22,8 @@ import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit
     MyApp,
     Page1,
     Page2,
-    PageListUnit, ModalCadastroUnit
+    PageListUnit,
+    ModalCadastroUnit, PageListProduct, ModalCadastroProduct
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +33,8 @@ import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit
     MyApp,
     Page1,
     Page2,
-    PageListUnit, ModalCadastroUnit
+    PageListUnit,
+    ModalCadastroUnit, PageListProduct, ModalCadastroProduct
   ],
   providers: [
     StatusBar,
