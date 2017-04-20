@@ -12,26 +12,26 @@ import { Survey } from "./Survey";
 
 export class List {
 
-    @Input() private sDate: Date;
-    private sListSurvey: Survey[];
+    @Input() private _sDate: Date;
+    @Input() private _sListSurvey: Survey[];
 
 
     constructor() {
-        this.sListSurvey = [];
+        
     }
 
-    public get _sDate(): Date {
-        return this.sDate
+    public get sDate(): Date {
+        return this._sDate
     }
-    public set _sDate(date: Date) {
-        this.sDate = date;
+    public set sDate(date: Date) {
+        this._sDate = date;
     }
 
-    public get _sListSurvey(): Survey[] {
-        return this.sListSurvey
+    public get sListSurvey(): Survey[] {
+        return this._sListSurvey
     }
-    public set _sListSurvey(listsurvey: Survey[]) {
-        this.sListSurvey = listsurvey;
+    public set sListSurvey(listsurvey: Survey[]) {
+        this._sListSurvey = listsurvey;
     }
 
 

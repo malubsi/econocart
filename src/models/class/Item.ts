@@ -14,44 +14,44 @@ import 'rxjs/add/operator/map';
 
 export class Item {
 
-    @Input() private pProduct: Product;
-    @Input() private uUnit: Unit;
-    @Input() private nAmount: number;
-    @Input() private nPrice: number;
+    @Input() private _pProduct: Product;
+    @Input() private _uUnit: Unit;
+    @Input() private _nAmount: number;
+    @Input() private _nPrice: number;
 
 
     constructor() {
 
     }
 
-    public get _pProduct(): Product {
-        return this.pProduct;
+    public get pProduct(): Product {
+        return this._pProduct;
     }
-    public set _pProduct(product: Product) {
-        this.pProduct = product;
-    }
-
-
-    public get _uUnit(): Unit {
-        return this.uUnit;
-    }
-    public set _uUnit(unit: Unit) {
-        this.uUnit = unit;
-    }
-
-    public get _nAmount(): number {
-        return this.nAmount;
-    }
-    public set _nAmount(amount: number) {
-        this.nAmount = amount;
+    public set pProduct(product: Product) {
+        this._pProduct = product;
     }
 
 
-    public get _nPrice(): number {
-        return this.nPrice;
+    public get uUnit(): Unit {
+        return this._uUnit;
     }
-    public set _nPrice(price: number) {
-        this.nPrice = price;
+    public set uUnit(unit: Unit) {
+        this._uUnit = unit;
+    }
+
+    public get nAmount(): number {
+        return this._nAmount;
+    }
+    public set nAmount(amount: number) {
+        this._nAmount = amount;
+    }
+
+
+    public get nPrice(): number {
+        return this._nPrice;
+    }
+    public set nPrice(price: number) {
+        this._nPrice = price;
     }
 
 }

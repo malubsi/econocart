@@ -4,9 +4,6 @@ import 'rxjs/add/operator/map';
 import { Market } from "./Market";
 
 
-
-
-
 @Component({
 })
 
