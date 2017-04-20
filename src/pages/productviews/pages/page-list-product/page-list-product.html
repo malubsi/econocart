@@ -7,15 +7,10 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <ion-item-sliding *ngFor="let item of products">
-            <ion-item (click)="edit(item)">
-                {{item._sDescription}}
-            </ion-item>
-            <ion-item-options>
-                <button ion-button color="danger" (click)="delete(item)">Excluir</button>
-            </ion-item-options>
-        </ion-item-sliding>
+    <ion-list *ngFor="let item of products">
+        <ion-item (click)="presentActionSheet(item)">
+            {{item.sDescription}}
+        </ion-item>
     </ion-list>
     <ion-fab right bottom>
         <button ion-fab color="danger" (click)="insert(item)"><ion-icon name="add"></ion-icon></button>

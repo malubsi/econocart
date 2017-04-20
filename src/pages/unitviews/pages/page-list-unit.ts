@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Toast, ToastController, AlertController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
+import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { Unit } from "../../../models/class/Unit";
 import { UnitService } from "../../../service/dao-service/unit.service";
 import { ModalCadastroUnit } from "../modals/modal-cadastro-unit/modal-cadastro-unit";
@@ -21,7 +21,7 @@ export class PageListUnit {
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public unitService: UnitService, public loading: LoadingController,
         public modalController: ModalController, public alert: AlertController,
-        public toast: ToastController) {
+        public toast: ToastController, public actionSheetCtrl: ActionSheetController) {
         this.units = [];
         this.ionViewLoaded();
     }
@@ -42,45 +42,84 @@ export class PageListUnit {
         modal.onDidDismiss(data => {
             if ((typeof (data) !== 'undefined') && (data !== null)) {
                 this.units.push(data);
+                let toast = this.toast.create({
+                    message: 'Unidade criada com sucesso',
+                    duration: 2500,
+                    position: 'top'
+                });
+                toast.present();
             }
         });
     }
 
-    edit(element: Unit) {
-        let modal = this.modalController.create(ModalCadastroUnit, { parametro: element });
-        modal.present(modal);
-        modal.onDidDismiss(data => {
-            if ((typeof (data) !== 'undefined') && (data !== null)) {
-                this.unitService.update(data);
-            }
-        });
-    }
-    delete(element: Unit) {
-        let confirm = this.alert.create({
-            title: "Excluir",
-            subTitle: "Gostaria de realmente excluir a unidade " + element.sInitials + "?",
+    presentActionSheet(element: Unit) {
+        let actionSheet = this.actionSheetCtrl.create({
+            title: 'Escolha uma das opções abaixo:',
             buttons: [
                 {
-                    text: "Sim",
+                    text: 'Deletar',
+                    role: 'destructive',
+                    icon: 'trash',
                     handler: () => {
+                        let confirm = this.alert.create({
+                            title: "Excluir",
+                            subTitle: "Gostaria de realmente excluir a unidade " + element.sInitials + "?",
+                            buttons: [
+                                {
+                                    text: "Sim",
+                                    handler: () => {
 
-                        this.unitService.delete(element);
-                        let index = this.units.indexOf(element);
-                        this.units.splice(index, 1);
-                        let toast = this.toast.create({
-                            message: 'Matéria excluída com sucesso',
-                            duration: 3000,
-                            position: 'bottom'
+                                        this.unitService.delete(element);
+                                        let index = this.units.indexOf(element);
+                                        this.units.splice(index, 1);
+                                        let toast = this.toast.create({
+                                            message: 'Unidade excluída com sucesso',
+                                            duration: 2500,
+                                            position: 'top'
+                                        });
+                                        toast.present();
+                                    }
+                                },
+                                {
+                                    text: "Não"
+                                }
+                            ]
                         });
-                        toast.present();
+                        confirm.present();
                     }
                 },
                 {
-                    text: "Não"
+                    text: 'Editar',
+                    role: 'edit',
+                    icon: 'create',
+                    handler: () => {
+                        let modal = this.modalController.create(ModalCadastroUnit, { parametro: element });
+                        modal.present(modal);
+                        modal.onDidDismiss(data => {
+                            if ((typeof (data) !== 'undefined') && (data !== null)) {
+                                this.unitService.update(data);
+                                let toast = this.toast.create({
+                                    message: 'Unidade editada com sucesso',
+                                    duration: 2500,
+                                    position: 'top'
+                                });
+                                toast.present();
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    icon: 'close',
+                    handler: () => {
+
+                    }
                 }
             ]
         });
-        confirm.present();
+
+        actionSheet.present();
     }
 
 }

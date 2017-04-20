@@ -14,6 +14,7 @@ import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
 import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit/modal-cadastro-unit";
 import { PageListProduct } from "../pages/productviews/pages/page-list-product/page-list-product";
 import { ModalCadastroProduct } from "../pages/productviews/modal/modal-cadastro-product/modal-cadastro-product";
+import { ProductService } from "../service/dao-service/product.service";
 
 
 
@@ -40,7 +41,7 @@ import { ModalCadastroProduct } from "../pages/productviews/modal/modal-cadastro
     StatusBar,
     SplashScreen,
     SocialSharing,
-    SocialSharingService, StarterService, UnitService,
+    SocialSharingService, StarterService, UnitService, ProductService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

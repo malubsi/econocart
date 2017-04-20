@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Product } from "../../../../models/class/Product";
+import { ProductService } from "../../../../service/dao-service/product.service";
 
 
 /*
@@ -19,7 +20,7 @@ export class ModalCadastroProduct {
     private product: Product;
 
     constructor(public viewCtrl: ViewController, public navCtrl: NavController,
-        public navParams: NavParams, public loading: LoadingController) {
+        public navParams: NavParams, public loading: LoadingController, public productService: ProductService) {
         this.product = navParams.get("parametro") || new Product();
     }
 
@@ -30,9 +31,9 @@ export class ModalCadastroProduct {
     salvar() {
         if ((typeof (this.product.sDescription) !== 'undefined')) {
             if (this.product.nId > 0) {
-                //      this.unitService.update(this.unit);
+                this.productService.update(this.product);
             } else {
-                //       this.unitService.create(this.unit);
+                this.productService.create(this.product);
             }
             this.viewCtrl.dismiss(this.product);
         } else {
