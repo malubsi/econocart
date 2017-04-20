@@ -13,34 +13,32 @@ import { Market } from "./Market";
 
 export class Survey {
 
-    @Input() private sDescription: string;
-    private iListItem: Item[];
-    @Input() private mMarket: Market;
+    @Input() private _sDescription: string;
+    @Input() private _iListItem: Item[];
+    @Input() private _mMarket: Market;
 
     constructor() {
-        this.iListItem = [];
+        this._iListItem = [];
     }
 
-    public get _sDescription(): string {
-        return this.sDescription
+    public get sDescription(): string {
+        return this._sDescription
     }
-    public set _sDescription(description: string) {
-        this.sDescription = description;
-    }
-
-    public get _iListItem(): Item[] {
-        return this.iListItem
-    }
-    public set _iListItem(listitem: Item[]) {
-        this.iListItem = listitem;
+    public set sDescription(description: string) {
+        this._sDescription = description;
     }
 
-    public get _mMarket(): Market {
-        return this.mMarket
+    public get iListItem(): Item[] {
+        return this._iListItem
     }
-    public set _mMarket(market: Market) {
-        this.mMarket = market;
+    public set iListItem(listitem: Item[]) {
+        this._iListItem = listitem;
     }
 
-
+    public get mMarket(): Market {
+        return this._mMarket
+    }
+    public set mMarket(market: Market) {
+        this._mMarket = market;
+    }
 }
