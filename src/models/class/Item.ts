@@ -1,16 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Unit } from "./Unit";
-import { Product } from "./Product";
+import {Input } from '@angular/core';
 import 'rxjs/add/operator/map';
-
-
-
-
-
-
-@Component({
-})
-
+import { Product } from "./Product";
+import { Unit } from "./Unit";
 
 export class Item {
 

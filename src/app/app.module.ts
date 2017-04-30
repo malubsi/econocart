@@ -1,47 +1,44 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
-import { SocialSharing } from "@ionic-native/social-sharing";
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
+import { Toast } from "@ionic-native/toast";
+import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import { UnitCreateModule } from "../pages/unit/unit-create/unit-create.module";
 
-import { SocialSharingService } from "../service/socialsharing/socialsharingservice";
-import { StarterService } from "../service/starter-service/starter.service";
-import { UnitService } from "../service/dao-service/unit.service";
-import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
-import { ModalCadastroUnit } from "../pages/unitviews/modals/modal-cadastro-unit/modal-cadastro-unit";
-import { PageListProduct } from "../pages/productviews/pages/page-list-product/page-list-product";
-import { ModalCadastroProduct } from "../pages/productviews/modal/modal-cadastro-product/modal-cadastro-product";
-import { ProductService } from "../service/dao-service/product.service";
+import { UnitListPageModule } from "../pages/unit/unit-list-page/unit-list-page.module";
 
+
+
+
+import { SQLite } from "@ionic-native/sqlite";
+import { DaoUnit } from "../providers/dao/dao-unit.service";
+import { StartService } from "../providers/start/start-service.service";
+import { DaoProduct } from "../providers/dao/dao-product.service";
+import { ProductCreatePageModule } from "../pages/product/product-create-page/product-create-page.module";
+import { ProductListPageModule } from "../pages/product/product-list-page/product-list-page.module";
 
 
 @NgModule({
   declarations: [
-    MyApp,
-    Page1,
-    Page2,
-    PageListUnit,
-    ModalCadastroUnit, PageListProduct, ModalCadastroProduct
+    MyApp, HomePage, ListPage,
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule, IonicModule.forRoot(MyApp), UnitListPageModule, HttpModule, UnitCreateModule, ProductListPageModule, ProductCreatePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    Page1,
-    Page2,
-    PageListUnit,
-    ModalCadastroUnit, PageListProduct, ModalCadastroProduct
+    MyApp, HomePage, ListPage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    SocialSharing,
-    SocialSharingService, StarterService, UnitService, ProductService,
+    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

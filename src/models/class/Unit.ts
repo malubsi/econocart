@@ -1,11 +1,5 @@
-import { Component, Input } from '@angular/core';
+import {Input } from '@angular/core';
 import 'rxjs/add/operator/map';
-
-
-
-@Component({
-})
-
 
 export class Unit {
 

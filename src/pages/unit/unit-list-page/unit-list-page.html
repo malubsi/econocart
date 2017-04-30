@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Lista de Unidades</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngFor="let unit of _units">
+        <ion-item (click)="options(unit)">
+            {{unit.sInitials}}
+        </ion-item>
+    </ion-list>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

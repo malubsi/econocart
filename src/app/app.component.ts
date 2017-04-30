@@ -2,12 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
-import { StarterService } from "../service/starter-service/starter.service";
-import { PageListUnit } from "../pages/unitviews/pages/page-list-unit";
-import { PageListProduct } from "../pages/productviews/pages/page-list-product/page-list-product";
-
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
+import { UnitListPage } from "../pages/unit/unit-list-page/unit-list-page";
+import { StartService } from "../providers/start/start-service.service";
+import { ProductListPage } from "../pages/product/product-list-page/product-list-page";
 
 @Component({
   templateUrl: 'app.html'
@@ -15,20 +14,19 @@ import { PageListProduct } from "../pages/productviews/pages/page-list-product/p
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = HomePage;
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public startCrtl: StarterService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private _starter: StartService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 },
-      { title: 'Produtos', component: PageListProduct },
-      { title: 'Unidades', component: PageListUnit }
-
+      { title: 'Home', component: HomePage },
+      { title: 'List', component: ListPage },
+      { title: 'Produtos', component: ProductListPage },
+      { title: 'Unidades', component: UnitListPage }
     ];
 
   }
@@ -39,10 +37,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.startCrtl.start();
+      this._starter.start();
     });
-
-
   }
 
   openPage(page) {

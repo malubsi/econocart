@@ -1,15 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Input } from '@angular/core';
 import 'rxjs/add/operator/map';
-
-
-
-@Component({
-})
 
 
 export class Product {
 
-    @Input() private _sDescription: string;
+    @Input() private _sName: string;
     @Input() private _nId: number;
     constructor() {
 
@@ -20,11 +15,11 @@ export class Product {
     public set nId(id: number) {
         this._nId = id;
     }
-    public get sDescription(): string {
-        return this._sDescription
+    public get sName(): string {
+        return this._sName
     }
-    public set sDescription(description: string) {
-        this._sDescription = description;
+    public set sName(name: string) {
+        this._sName = name;
     }
 
 }

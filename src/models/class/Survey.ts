@@ -1,11 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {Input } from '@angular/core';
 import { Item } from "./Item";
 import 'rxjs/add/operator/map';
 import { Market } from "./Market";
-
-
-@Component({
-})
 
 
 export class Survey {

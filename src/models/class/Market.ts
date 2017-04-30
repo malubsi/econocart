@@ -1,12 +1,6 @@
 import { Component, Input } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-
-
-@Component({
-})
-
-
 export class Market {
 
     @Input() private _sDescription: string;
