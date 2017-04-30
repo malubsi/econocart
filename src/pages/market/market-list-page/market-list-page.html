@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Lista de Supermercados</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngFor="let market of _markets">
+        <ion-item (click)="options(market)">
+            {{market.sName}}
+        </ion-item>
+    </ion-list>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

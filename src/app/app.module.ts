@@ -24,6 +24,11 @@ import { StartService } from "../providers/start/start-service.service";
 import { DaoProduct } from "../providers/dao/dao-product.service";
 import { ProductCreatePageModule } from "../pages/product/product-create-page/product-create-page.module";
 import { ProductListPageModule } from "../pages/product/product-list-page/product-list-page.module";
+import { MarketListPage } from "../pages/market/market-list-page/market-list-page";
+import { MarketCreatePage } from "../pages/market/market-create-page/market-create-page";
+import { MarketCreatePageModule } from "../pages/market/market-create-page/market-create-page.module";
+import { MarketListPageModule } from "../pages/market/market-list-page/market-list-page.module";
+import { DaoMarket } from "../providers/dao/dao-market.service";
 
 
 @NgModule({
@@ -31,14 +36,15 @@ import { ProductListPageModule } from "../pages/product/product-list-page/produc
     MyApp, HomePage, ListPage,
   ],
   imports: [
-    BrowserModule, IonicModule.forRoot(MyApp), UnitListPageModule, HttpModule, UnitCreateModule, ProductListPageModule, ProductCreatePageModule
+    BrowserModule, IonicModule.forRoot(MyApp), UnitListPageModule, HttpModule,
+    UnitCreateModule, ProductListPageModule, ProductCreatePageModule, MarketListPageModule, MarketCreatePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp, HomePage, ListPage
   ],
   providers: [
-    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct,
+    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct, DaoMarket,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

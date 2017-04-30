@@ -3,17 +3,24 @@ import 'rxjs/add/operator/map';
 
 export class Market {
 
-    @Input() private _sDescription: string;
-
+    @Input() private _sName: string;
+    @Input() private _nId: number;
     constructor() {
 
     }
 
-    public get _Description(): string {
-        return this._sDescription
+    public get sName(): string {
+        return this._sName
     }
-    public set sDescription(description: string) {
-        this._sDescription = description;
+    public set sName(name: string) {
+        this._sName = name;
+    }
+
+    public get nId(): number {
+        return this._nId
+    }
+    public set nId(id: number) {
+        this._nId = id;
     }
 
 }

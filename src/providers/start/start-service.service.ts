@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { SQLiteObject, SQLite } from "@ionic-native/sqlite";
 import { DaoUnit } from "../dao/dao-unit.service";
 import { DaoProduct } from "../dao/dao-product.service";
+import { DaoMarket } from "../dao/dao-market.service";
 
 /*
   Generated class for the StartService provider.
@@ -14,7 +15,7 @@ import { DaoProduct } from "../dao/dao-product.service";
 @Injectable()
 export class StartService {
 
-  constructor(public http: Http, private _daoUnit: DaoUnit, private _daoProduct: DaoProduct,
+  constructor(public http: Http, private _daoUnit: DaoUnit, private _daoProduct: DaoProduct, private _daoMarket: DaoMarket,
     private _sqlite: SQLite) {
     console.log('Hello StartService Provider');
   }
@@ -32,7 +33,9 @@ export class StartService {
         this._daoUnit.setDatabase(db);
         this._daoProduct.setDatabase(db);
         this._daoUnit.createTable();
-        this._daoProduct.createTable()
+        this._daoProduct.createTable();
+        this._daoMarket.setDatabase(db);
+        this._daoMarket.createTable();
 
       }).catch(error => {
         console.error(error);

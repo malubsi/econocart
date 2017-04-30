@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
 import { SQLiteObject } from "@ionic-native/sqlite";
-import { Unit } from "../../models/class/Unit";
+import { Market } from "../../models/class/Market";
 
 /*
   Generated class for the DaoUnit provider.
@@ -12,7 +12,7 @@ import { Unit } from "../../models/class/Unit";
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class DaoUnit implements IDao {
+export class DaoMarket implements IDao {
 
   db: SQLiteObject;
 
@@ -26,37 +26,37 @@ export class DaoUnit implements IDao {
   constructor(public http: Http) {
   }
 
-  create(element: Unit) {
-    let sql = 'INSERT INTO Unit(sDescription,sInitials) VALUES(?,?)';
-    return this.db.executeSql(sql, [element.sDescription, element.sInitials]);
+  create(element: Market) {
+    let sql = 'INSERT INTO Market(sName) VALUES(?)';
+    return this.db.executeSql(sql, [element.sName]);
   }
 
   createTable() {
-    let sql = 'CREATE TABLE IF NOT EXISTS Unit(nId INTEGER PRIMARY KEY AUTOINCREMENT,sDescription TEXT, sInitials TEXT)';
+    let sql = 'CREATE TABLE IF NOT EXISTS Market(nId INTEGER PRIMARY KEY AUTOINCREMENT,sName TEXT)';
     return this.db.executeSql(sql, []);
   }
 
-  delete(element: Unit) {
-    let sql = 'DELETE FROM Unit WHERE nId=?';
+  delete(element: Market) {
+    let sql = 'DELETE FROM Market WHERE nId=?';
     return this.db.executeSql(sql, [element.nId]);
   }
 
   getAll() {
-    let sql = 'SELECT * FROM Unit';
+    let sql = 'SELECT * FROM Market';
     return this.db.executeSql(sql, [])
       .then(response => {
-        let units = [];
+        let markets = [];
         for (let index = 0; index < response.rows.length; index++) {
-          units.push(response.rows.item(index));
+          markets.push(response.rows.item(index));
         }
-        return Promise.resolve(units);
+        return Promise.resolve(markets);
       })
       .catch(error => Promise.reject(error));
   }
 
-  update(element: Unit) {
-    let sql = 'UPDATE Unit SET sDescription=?, sInitials=? WHERE nId=?';
-    return this.db.executeSql(sql, [element.sDescription, element.sInitials, element.nId]);
+  update(element: Market) {
+    let sql = 'UPDATE Market SET sName=? WHERE nId=?';
+    return this.db.executeSql(sql, [element.nId, element.nId]);
   }
 
 }
