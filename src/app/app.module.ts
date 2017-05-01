@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
@@ -29,22 +28,24 @@ import { MarketCreatePage } from "../pages/market/market-create-page/market-crea
 import { MarketCreatePageModule } from "../pages/market/market-create-page/market-create-page.module";
 import { MarketListPageModule } from "../pages/market/market-list-page/market-list-page.module";
 import { DaoMarket } from "../providers/dao/dao-market.service";
+import { ListItemListPageModule } from "../pages/listitem/list-item-list-page/list-item-list-page.module";
+import { DaoListItem } from "../providers/dao/dao-listitem.service";
+import { ListItemCreatePageModule } from "../pages/listitem/list-item-create-page/list-item-create-page.module";
 
 
 @NgModule({
   declarations: [
-    MyApp, HomePage, ListPage,
+    MyApp, HomePage,
   ],
   imports: [
-    BrowserModule, IonicModule.forRoot(MyApp), UnitListPageModule, HttpModule,
+    BrowserModule, IonicModule.forRoot(MyApp), UnitListPageModule, HttpModule, ListItemListPageModule,ListItemCreatePageModule,
     UnitCreateModule, ProductListPageModule, ProductCreatePageModule, MarketListPageModule, MarketCreatePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp, HomePage, ListPage
-  ],
+    MyApp, HomePage,],
   providers: [
-    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct, DaoMarket,
+    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct, DaoMarket, DaoListItem,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

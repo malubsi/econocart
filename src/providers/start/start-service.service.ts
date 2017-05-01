@@ -5,6 +5,7 @@ import { SQLiteObject, SQLite } from "@ionic-native/sqlite";
 import { DaoUnit } from "../dao/dao-unit.service";
 import { DaoProduct } from "../dao/dao-product.service";
 import { DaoMarket } from "../dao/dao-market.service";
+import { DaoListItem } from "../dao/dao-listitem.service";
 
 /*
   Generated class for the StartService provider.
@@ -16,6 +17,7 @@ import { DaoMarket } from "../dao/dao-market.service";
 export class StartService {
 
   constructor(public http: Http, private _daoUnit: DaoUnit, private _daoProduct: DaoProduct, private _daoMarket: DaoMarket,
+    private _daoListItem: DaoListItem,
     private _sqlite: SQLite) {
     console.log('Hello StartService Provider');
   }
@@ -36,7 +38,9 @@ export class StartService {
         this._daoProduct.createTable();
         this._daoMarket.setDatabase(db);
         this._daoMarket.createTable();
-
+        this._daoListItem.setDatabase(db);
+        this._daoListItem.createTable();
+        this._daoListItem.createTableAux();
       }).catch(error => {
         console.error(error);
       });

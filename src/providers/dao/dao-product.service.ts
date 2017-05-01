@@ -54,8 +54,21 @@ export class DaoProduct implements IDao {
             .catch(error => Promise.reject(error));
     }
 
+    getById(id: number) {
+        let sql = 'SELECT * FROM Product where nId = ?';
+        return this.db.executeSql(sql, [id])
+            .then(response => {
+                let product;
+                for (let index = 0; index < response.rows.length; index++) {
+                    product = (response.rows.item(index));
+                }
+                return Promise.resolve(product);
+            })
+            .catch(error => Promise.reject(error));
+    }
+
     update(element: Product) {
-        let sql = 'UPDATE Product SET sDescription=? WHERE nId=?';
+        let sql = 'UPDATE Product SET sName=? WHERE nId=?';
         return this.db.executeSql(sql, [element.sName, element.nId]);
     }
 

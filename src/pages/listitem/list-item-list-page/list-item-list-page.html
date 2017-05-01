@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Lista de Itens</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngFor="let list of _listItem">
+        <ion-item class="item-icon-left" (click)="options(list)">
+            <i class="icon ion-android-cart"></i>{{list.sName}}</ion-item>
+    </ion-list>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>
