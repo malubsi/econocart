@@ -56,7 +56,7 @@ export class DaoMarket implements IDao {
 
   update(element: Market) {
     let sql = 'UPDATE Market SET sName=? WHERE nId=?';
-    return this.db.executeSql(sql, [element.nId, element.nId]);
+    return this.db.executeSql(sql, [element.sName, element.nId]);
   }
 
 }
