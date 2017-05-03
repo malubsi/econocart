@@ -1,3 +1,20 @@
 page-home {
-
+    .btnhome {
+        width:70%;
+        text-shadow: black 0.1em 0.1em 0.1em;
+        padding:3vw;
+        position: fixed;
+        bottom: 20px;
+        margin: auto;
+    }
+    .h1home{
+        font-size:16vw;
+        text-align: center;
+        color:white;
+        text-shadow: black 0.1em 0.1em 0.1em;
+        margin-top:30vw;
+    }
+    .contenthome{
+        background-color:#b4a098;
+    }
 }
