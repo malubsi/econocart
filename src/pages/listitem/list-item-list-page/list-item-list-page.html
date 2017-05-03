@@ -7,17 +7,15 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list *ngFor="let list of _listItem">
-        <div *ngIf="_listItem == null||_listItem == undefined">
-            <h1>
-                Para começar, clique no ícone abaixo e adicione o primeiro item.
-            </h1>
-        </div>
-        <button ion-item class="item-icon-left" (click)="options(list)">
-            <i class="icon ion-android-cart"></i>{{list.sName}}</button>
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let list of _listItem" class="item-icon-left" (click)="options(list)">
+            <ion-icon name="cart"></ion-icon> {{list.sName}}
+        </ion-item>
     </ion-list>
     <ion-fab right bottom>
-        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+        <button ion-fab color="secondary" (click)="insert()">
+            <ion-icon name="add"></ion-icon>
+        </button>
     </ion-fab>
 </ion-content>

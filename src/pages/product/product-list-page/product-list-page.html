@@ -7,13 +7,13 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list *ngFor="let product of _products">
-        <ion-item (click)="options(product)">
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let product of _products" (click)="options(product)">
             {{product.sName}}
         </ion-item>
     </ion-list>
     <ion-fab right bottom>
-        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+        <button ion-fab color="secondary" (click)="insert()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 </ion-content>
