@@ -36,9 +36,9 @@ before_script:
 
 script:
   - ionic build browser --prod
-  - npm test-ci
-  - sonar-scanner
+  - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
+  - sonar-scanner
 
 after_success:
     - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
