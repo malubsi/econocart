@@ -40,7 +40,7 @@ script:
   - sonar-scanner
 
 after_success:
-    - ./node_modules/.bin/codecov -t $TRAVIS_TOKEN
+    - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
 notifications:
   slack: econocart:HmGTsUw1lVIfPG29d8JGjP5c
