@@ -1,6 +1,6 @@
 
 [![Build Status](https://travis-ci.org/malubsi/econocart.svg?branch=master)](https://travis-ci.org/malubsi/econocart)
-[![Code Coverage](https://codecov.io/gh/malubsi/econocart/branch/master/graph/badge.svg)](https://codecov.io/gh/codecov/malubsi/econocart)
+[![Code Coverage](https://codecov.io/gh/malubsi/econocart/branch/master/graph/badge.svg)](https://codecov.io/gh/malubsi/econocart)
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=pmdsys)](https://sonarqube.com/dashboard/index/pmdsys)
 
 # EconoCart
