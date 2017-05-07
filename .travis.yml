@@ -26,6 +26,7 @@ before_script:
     - npm install -g ionic
     - npm install
     - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    - mkdir www
 
 script:
   - npm test
