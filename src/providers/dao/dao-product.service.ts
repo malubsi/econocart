@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
-import { SQLiteObject } from "@ionic-native/sqlite";
+import { SQLite } from "@ionic-native/sqlite";
 import { DaoAbstract } from "./dao-abstract.service";
 import { Product } from "../../models/class/Product";
 
@@ -14,28 +14,28 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export class DaoProduct extends DaoAbstract implements IDao {
 
-    constructor() {
-        super()
+    constructor(_sqlite: SQLite) {
+        super(_sqlite)
     }
 
     create(element: Product) {
         let sql = 'INSERT INTO Product(sName) VALUES(?)';
-        return this.db.executeSql(sql, [element.sName]);
+        return this.getDatabase().executeSql(sql, [element.sName]);
     }
 
     createTable() {
         let sql = 'CREATE TABLE IF NOT EXISTS Product(nId INTEGER PRIMARY KEY AUTOINCREMENT,sName TEXT)';
-        return this.db.executeSql(sql, []);
+        return this.getDatabase().executeSql(sql, []);
     }
 
     delete(element: Product) {
         let sql = 'DELETE FROM Product WHERE nId=?';
-        return this.db.executeSql(sql, [element.nId]);
+        return this.getDatabase().executeSql(sql, [element.nId]);
     }
 
     getAll() {
         let sql = 'SELECT * FROM Product';
-        return this.db.executeSql(sql, [])
+        return this.getDatabase().executeSql(sql, [])
         .then(response => {
             let Products = [];
             for (let index = 0; index < response.rows.length; index++) {
@@ -48,7 +48,7 @@ export class DaoProduct extends DaoAbstract implements IDao {
 
     getById(id: number) {
         let sql = 'SELECT * FROM Product where nId = ?';
-        return this.db.executeSql(sql, [id])
+        return this.getDatabase().executeSql(sql, [id])
         .then(response => {
             let product;
             for (let index = 0; index < response.rows.length; index++) {
@@ -61,11 +61,11 @@ export class DaoProduct extends DaoAbstract implements IDao {
 
     update(element: Product) {
         let sql = 'UPDATE Product SET sName=? WHERE nId=?';
-        return this.db.executeSql(sql, [element.sName, element.nId]);
+        return this.getDatabase().executeSql(sql, [element.sName, element.nId]);
     }
 
     deleteById(id: number){
         let sql = 'DELETE FROM Product WHERE nId=?'
-        return this.db.executeSql(sql, [])
+        return this.getDatabase().executeSql(sql, [])
     }
 }

@@ -1,5 +1,6 @@
 
 [![Build Status](https://travis-ci.org/malubsi/econocart.svg?branch=master)](https://travis-ci.org/malubsi/econocart)
+[![Code Coverage](https://codecov.io/gh/malubsi/econocart/branch/master/graph/badge.svg)](https://codecov.io/gh/codecov/malubsi/econocart)
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=pmdsys)](https://sonarqube.com/dashboard/index/pmdsys)
 
 # EconoCart
@@ -15,6 +16,3 @@ o menor valor em cada um dos locais visitados. No fim o responsável deverá sel
 4. Yago Souza
 ####  Pitch
 https://docs.google.com/presentation/d/1r32sdMYDJiVIezoNyPQHDH_mXuX5soIAE_cfvTK4t7M
-
-
- 

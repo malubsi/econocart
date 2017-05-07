@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
-import { SQLiteObject } from "@ionic-native/sqlite";
+import { SQLite } from "@ionic-native/sqlite";
 import { DaoAbstract } from "./dao-abstract.service";
 import { Market } from "../../models/class/Market";
 
@@ -14,28 +14,28 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export class DaoMarket extends DaoAbstract implements IDao {
 
-    constructor() {
-        super()
+    constructor(_sqlite: SQLite) {
+        super(_sqlite)
     }
 
     create(element: Market) {
         let sql = 'INSERT INTO Market(sName) VALUES(?)';
-        return this.db.executeSql(sql, [element.sName]);
+        return this.getDatabase().executeSql(sql, [element.sName]);
     }
 
     createTable() {
         let sql = 'CREATE TABLE IF NOT EXISTS Market(nId INTEGER PRIMARY KEY AUTOINCREMENT,sName TEXT)';
-        return this.db.executeSql(sql, []);
+        return this.getDatabase().executeSql(sql, []);
     }
 
     delete(element: Market) {
         let sql = 'DELETE FROM Market WHERE nId=?';
-        return this.db.executeSql(sql, [element.nId]);
+        return this.getDatabase().executeSql(sql, [element.nId]);
     }
 
     getAll() {
         let sql = 'SELECT * FROM Market';
-        return this.db.executeSql(sql, [])
+        return this.getDatabase().executeSql(sql, [])
         .then(response => {
             let markets = [];
             for (let index = 0; index < response.rows.length; index++) {
@@ -48,17 +48,17 @@ export class DaoMarket extends DaoAbstract implements IDao {
 
     update(element: Market) {
         let sql = 'UPDATE Market SET sName=? WHERE nId=?';
-        return this.db.executeSql(sql, [element.sName, element.nId]);
+        return this.getDatabase().executeSql(sql, [element.sName, element.nId]);
     }
 
     deleteById(id: number){
         let sql = 'DELETE FROM Market WHERE nId=?'
-        return this.db.executeSql(sql, [])
+        return this.getDatabase().executeSql(sql, [])
     }
 
     getById(id: number){
         let sql = 'SELECT * FROM Market WHERE nId=?'
-        return this.db.executeSql(sql, [])
+        return this.getDatabase().executeSql(sql, [])
     }
 
 }

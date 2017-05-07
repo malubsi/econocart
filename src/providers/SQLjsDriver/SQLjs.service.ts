@@ -1,6 +1,7 @@
 import { SQLiteObject, SQLite, SQLiteDatabaseConfig } from "@ionic-native/sqlite";
 import { Injectable } from '@angular/core';
 
+declare var require:any;
 declare var SQL:any;
 
 @Injectable()
@@ -18,11 +19,20 @@ export class SQLjs extends SQLite {
 
 @Injectable()
 export class SQLjsObject extends SQLiteObject {
+    static _mockstatus = false;
+    static makeMock(){
+        SQLjsObject._mockstatus = true;
+    }
+    static isMock(){
+        return SQLjsObject._mockstatus;
+    }
     _objectInstance: any;
     databaseFeatures: any;
     constructor(){
         super(undefined);
-        this._objectInstance = new SQL.Database();
+        if(typeof(SQL)!=='undefined'){
+            this._objectInstance = new SQL.Database();
+        }
     }
     addTransaction(transaction: any): void{
         return;
@@ -44,20 +54,28 @@ export class SQLjsObject extends SQLiteObject {
     }
     executeSql(statement: string, params: any): Promise<any>{
         return new Promise<any>((resolve, reject) => {
-            let stmt = this._objectInstance.prepare(statement, params);
-            let lines = new Array();
-            while(stmt.step()){
-                let columnNames: Array<string> = stmt.getColumnNames()
-                let linePlain = stmt.get()
-                let lineAssoc: {[id: string]:object;} = {}
-                for(let columnNumber = 0; columnNumber < columnNames.length; columnNumber++){
-                    lineAssoc[columnNames[columnNumber]] = linePlain[columnNumber]
+            if(!SQLjsObject.isMock()){
+                //not in test environment
+                let stmt = this._objectInstance.prepare(statement, params);
+                let lines = new Array();
+                while(stmt.step()){
+                    let columnNames: Array<string> = stmt.getColumnNames()
+                    let linePlain = stmt.get()
+                    let lineAssoc: {[id: string]:object;} = {}
+                    for(let columnNumber = 0; columnNumber < columnNames.length; columnNumber++){
+                        lineAssoc[columnNames[columnNumber]] = linePlain[columnNumber]
+                    }
+                    lines.push(lineAssoc);
                 }
-                lines.push(lineAssoc);
+                resolve({
+                    rows: new SQLjsRows(lines),
+                });
+            }else{
+                //testing; then should act as mock
+                resolve({
+                    rows: new SQLjsRows([]),
+                });
             }
-            resolve({
-                rows: new SQLjsRows(lines),
-            });
         });
     }
     addStatement(sql: any, values: any): Promise<any>{
@@ -89,7 +107,7 @@ export class SQLjsObject extends SQLiteObject {
     }
 }
 
-class SQLjsRows {
+export class SQLjsRows {
     private _lines:Array<object>;
     constructor(lines:Array<object>){
         this._lines = lines;

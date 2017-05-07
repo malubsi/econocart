@@ -7,11 +7,23 @@ import 'zone.js/dist/jasmine-patch';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
 
+import { Http } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { getTestBed, TestBed } from '@angular/core/testing';
+import { SQLiteObject, SQLite } from "@ionic-native/sqlite";
+import { SQLjsObject, SQLjs } from "./providers/SQLjsDriver/SQLjs.service";
+import { SQLmockObject, SQLmock } from './mocks';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
-import { App, Config, Form, IonicModule, Keyboard, DomController, MenuController, NavController, Platform } from 'ionic-angular';
-import { ConfigMock, PlatformMock } from './mocks';
+import { App, Config, Form, IonicModule, Keyboard, DomController} from 'ionic-angular';
+import { MenuController, NavController, Platform, NavParams } from 'ionic-angular';
+import { AlertController, ActionSheetController, GestureController } from 'ionic-angular';
+import { Toast } from "@ionic-native/toast";
+import { ConfigMock, PlatformMock, NavParamsMock, AlertMock, daomock } from './mocks';
+import { DaoUnit } from './providers/dao/dao-unit.service'
+import { DaoMarket } from './providers/dao/dao-market.service'
+import { DaoProduct } from './providers/dao/dao-product.service'
+import { DaoListItem } from './providers/dao/dao-listitem.service'
+import { StartService } from './providers/start/start-service.service'
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -37,6 +49,7 @@ __karma__.start();
 export class TestUtils {
 
     public static beforeEachCompiler(components: Array<any>): Promise<{fixture: any, instance: any}> {
+        //SQLjsObject.makeMock()
         return TestUtils.configureIonicTestingModule(components)
         .compileComponents().then(() => {
             let fixture: any = TestBed.createComponent(components[0]);
@@ -54,8 +67,19 @@ export class TestUtils {
             ],
             providers: [
                 App, Form, Keyboard, DomController, MenuController, NavController,
+                ActionSheetController, Toast, GestureController, Http,
+                {provide: DaoUnit, useClass: daomock},
+                {provide: DaoMarket, useClass: daomock},
+                {provide: DaoProduct, useClass: daomock},
+                {provide: DaoListItem, useClass: daomock},
                 {provide: Platform, useClass: PlatformMock},
                 {provide: Config, useClass: ConfigMock},
+                {provide: NavParams, useClass: NavParamsMock},
+                {provide: AlertController, useClass: AlertMock},
+                {provide: SQLiteObject, useClass: SQLmockObject},
+                {provide: SQLite, useClass: SQLmock},
+                {provide: SQLjsObject, useClass: SQLmockObject},
+                {provide: SQLjs, useClass: SQLmock},
             ],
             imports: [
                 FormsModule,

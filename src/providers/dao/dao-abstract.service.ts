@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
-import { SQLiteObject } from "@ionic-native/sqlite";
+import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
+import { SQLjsObject } from "../SQLjsDriver/SQLjs.service";
 
 /*
 Generated class for the DaoUnit provider.
@@ -12,13 +13,38 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export abstract class DaoAbstract implements IDao {
 
-    db: SQLiteObject;
+    _db: SQLiteObject;
 
     setDatabase(db: SQLiteObject) {
-        if ((typeof(this.db) == 'undefined')) {
-            console.log("setting "+String(db)+" from undefined");
-            this.db = db;
+        this._db = db;
+    }
+
+    getDatabase(): SQLiteObject{
+        if(typeof(this._db)==='undefined'){
+            return DaoAbstract.getMockDatabase();
+        }else{
+            return this._db;
         }
+    }
+
+    static mockDatabase = null;
+
+    static getMockDatabase(){
+        if(DaoAbstract.mockDatabase === null){
+            DaoAbstract.mockDatabase = new SQLjsObject()
+        }
+        return DaoAbstract.mockDatabase;
+    }
+
+    constructor(_sqlite: SQLite) {
+        _sqlite.create({
+            name: 'econocart.db',
+            location: 'default'
+        }).then((db) => {
+            this.setDatabase(db)
+        }).catch(error => {
+            this.setDatabase(DaoAbstract.getMockDatabase());
+        });
     }
 
     public abstract createTable():Promise<any>;
