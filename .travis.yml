@@ -29,9 +29,9 @@ before_script:
     - mkdir www
 
 script:
-  - npm test
   - ionic platform add browser
   - ionic build browser --prod
+  - npm test
   - sonar-scanner
 
 notifications:
