@@ -6,39 +6,42 @@ node_js:
   - node
   - 6
   - 7
-  
+
 jdk:
   - oraclejdk8
-  
+
 addons:
   apt:
+    sources:
+      - google-chrome
     packages:
       - oracle-java8-installer
+      - google-chrome-stable
   sonarqube:
     organization: "adlerosn-github"
-    token:
-      secure: "XXznsCQZ52V61N3+GfbCDY8mbrCEcr2xX7oOFSRgKWkEldeO1ddtGzOhRXCguFEREKdLvGXUlHBC1FbPtQItjMcLaXOjuGReCHxwn3qW3B09dtSEZKiGS9CbSFAu6Q8s5cp+xYniGdhahAUhwZtyVo1F0ihHQ7x3BYg0K+uvf+i1HxvjPb3Ny+PFRywMMSt4B2n3k9Ftg6VNsa2WOXpBJOZ+1h+onhqOi+QfOm2xz8fCeAwTPX5Ax9qVDY+1vg0+5I+v7SDDhXhtyxv26opaZqV0XRnwuFbcvoLLIznDmsagDBRH1A8sWdYnu9wzZoz+CgVeFy+jiV/nC1gu5a4pezxPY8GOc4Daw1v1oCB3s/WFZKYHeLalLNRmgiMCKYfMZM9I7KjEivFp8I/dYGZo2IR3eVD0qeQK5+BUBVFtWmKyM4b8BYGseZ2zkg6BURToh8LgP7qiNcQcZhgx1Vn0PL2Vs19a7UvVM42C46gL34IECcS7lB2do1kvkpT7GH74oJh7sggly/MGhsCEosRha3kz1l1EpNcpywXj2E8zYQWPg/Oj+0xjMw7R4rG4DEjQDEBKl83scbg5QTVxtE9n2sNV8I6udRxLcoRT5mtdPpuzsDTEbd5bFvYQL9QnxPxv04q2u340kIHaUbLWbLfivcAomFd1dL8y/yy8O6kPm+U="
-
-services:
-  - docker
-
-install:
-  - docker build -t sonarqube-sonartsplugin .
-  - docker run -d -p 127.0.0.1:29000:9000 -p 127.0.0.1:29092:9092 --name sonar sonarqube-sonartsplugin
+    token: $SONAR_TOKEN
 
 before_script:
+    - mkdir www
     - npm install -g npm@latest
-    - npm install
+    - npm install -g karma
     - npm install -g cordova
     - npm install -g ionic
+    - npm install
     - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - ionic platform remove browser
+    - ionic platform add browser
 
-script: 
-  - docker ps | grep -q sonar
-  - npm test
-  - ionic platform add browser
+script:
   - ionic build browser --prod
+  - ng test --watch=false --code-coverage
+  - sh -e /etc/init.d/xvfb stop
   - sonar-scanner
+
+after_success:
+    - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
 notifications:
   slack: econocart:HmGTsUw1lVIfPG29d8JGjP5c

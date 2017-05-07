@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,13 +7,13 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list *ngFor="let unit of _units">
-        <ion-item (click)="options(unit)">
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let unit of _units" (click)="options(unit)">
             {{unit.sInitials}}
         </ion-item>
     </ion-list>
     <ion-fab right bottom>
-        <button ion-fab color="danger" (click)="insert()"><ion-icon name="add"></ion-icon></button>
+        <button ion-fab color="secondary" (click)="insert()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 </ion-content>

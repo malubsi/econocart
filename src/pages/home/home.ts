@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController , Nav} from 'ionic-angular';
+
+import { ListItemListPage } from "../listitem/list-item-list-page/list-item-list-page";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+    @ViewChild(Nav) nav: Nav;
 
-  }
+    constructor(public navCtrl: NavController) {
+
+    }
+
+    openPage() {
+        return this.navCtrl.setRoot(ListItemListPage);
+    }
 
 }

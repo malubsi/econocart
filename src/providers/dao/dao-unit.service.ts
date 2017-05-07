@@ -1,62 +1,64 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
-import { SQLiteObject } from "@ionic-native/sqlite";
+import { SQLite } from "@ionic-native/sqlite";
+import { DaoAbstract } from "./dao-abstract.service";
 import { Unit } from "../../models/class/Unit";
 
 /*
-  Generated class for the DaoUnit provider.
+Generated class for the DaoUnit provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
+See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class DaoUnit implements IDao {
+export class DaoUnit extends DaoAbstract implements IDao {
 
-  db: SQLiteObject;
-
-  setDatabase(db: SQLiteObject) {
-    if ((typeof (this.db) == 'undefined')) {
-      console.log(db);
-      this.db = db;
+    constructor(_sqlite: SQLite) {
+        super(_sqlite)
     }
-  }
 
-  constructor(public http: Http) {
-  }
+    create(element: Unit) {
+        let sql = 'INSERT INTO Unit(sDescription,sInitials) VALUES(?,?)';
+        return this.getDatabase().executeSql(sql, [element.sDescription, element.sInitials]);
+    }
 
-  create(element: Unit) {
-    let sql = 'INSERT INTO Unit(sDescription,sInitials) VALUES(?,?)';
-    return this.db.executeSql(sql, [element.sDescription, element.sInitials]);
-  }
+    createTable() {
+        let sql = 'CREATE TABLE IF NOT EXISTS Unit(nId INTEGER PRIMARY KEY AUTOINCREMENT,sDescription TEXT, sInitials TEXT)';
+        return this.getDatabase().executeSql(sql, []);
+    }
 
-  createTable() {
-    let sql = 'CREATE TABLE IF NOT EXISTS Unit(nId INTEGER PRIMARY KEY AUTOINCREMENT,sDescription TEXT, sInitials TEXT)';
-    return this.db.executeSql(sql, []);
-  }
+    delete(element: Unit) {
+        let sql = 'DELETE FROM Unit WHERE nId=?';
+        return this.getDatabase().executeSql(sql, [element.nId]);
+    }
 
-  delete(element: Unit) {
-    let sql = 'DELETE FROM Unit WHERE nId=?';
-    return this.db.executeSql(sql, [element.nId]);
-  }
+    getAll() {
+        let sql = 'SELECT * FROM Unit';
+        return this.getDatabase().executeSql(sql, [])
+        .then(response => {
+            let units = [];
+            for (let index = 0; index < response.rows.length; index++) {
+                units.push(response.rows.item(index));
+            }
+            return Promise.resolve(units);
+        })
+        .catch(error => Promise.reject(error));
+    }
 
-  getAll() {
-    let sql = 'SELECT * FROM Unit';
-    return this.db.executeSql(sql, [])
-      .then(response => {
-        let units = [];
-        for (let index = 0; index < response.rows.length; index++) {
-          units.push(response.rows.item(index));
-        }
-        return Promise.resolve(units);
-      })
-      .catch(error => Promise.reject(error));
-  }
+    update(element: Unit) {
+        let sql = 'UPDATE Unit SET sDescription=?, sInitials=? WHERE nId=?';
+        return this.getDatabase().executeSql(sql, [element.sDescription, element.sInitials, element.nId]);
+    }
 
-  update(element: Unit) {
-    let sql = 'UPDATE Unit SET sDescription=?, sInitials=? WHERE nId=?';
-    return this.db.executeSql(sql, [element.sDescription, element.sInitials, element.nId]);
-  }
+    deleteById(id: number){
+        let sql = 'DELETE FROM Unit WHERE nId=?'
+        return this.getDatabase().executeSql(sql, [])
+    }
+
+    getById(id: number){
+        let sql = 'SELECT * FROM Unit WHERE nId=?'
+        return this.getDatabase().executeSql(sql, [])
+    }
 
 }
