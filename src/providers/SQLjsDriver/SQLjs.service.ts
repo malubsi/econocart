@@ -104,4 +104,7 @@ class SQLjsRows {
             throw new RangeError("Index is out of the range of the list.");
         }
     }
+    public get array():Array<object>{
+        return this._lines;
+    }
 }
