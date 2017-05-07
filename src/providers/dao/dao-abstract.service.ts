@@ -27,6 +27,10 @@ export abstract class DaoAbstract implements IDao {
         }
     }
 
+    get db(): SQLiteObject{
+        return this.getDatabase()
+    }
+
     static mockDatabase = null;
 
     static getMockDatabase(){
