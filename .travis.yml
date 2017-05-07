@@ -8,12 +8,12 @@ node_js:
   - 7
 
 jdk:
-  - openjdk-8-jdk
+  - oraclejdk8
 
 addons:
   apt:
     packages:
-      - openjdk-8-jdk
+      - oracle-java8-installer
   sonarqube:
     organization: "adlerosn-github"
     token:
@@ -25,7 +25,7 @@ before_script:
     - npm install -g cordova
     - npm install -g ionic
     - npm install
-    - export JAVA_HOME=/usr/lib/jvm/default-java
+    - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 script:
   - npm test
