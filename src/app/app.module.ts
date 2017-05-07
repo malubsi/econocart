@@ -18,6 +18,7 @@ import { UnitListPageModule } from "../pages/unit/unit-list-page/unit-list-page.
 
 
 import { SQLite } from "@ionic-native/sqlite";
+import { SQLjsObject, SQLjs } from "../providers/SQLjsDriver/SQLjs.service";
 import { DaoUnit } from "../providers/dao/dao-unit.service";
 import { StartService } from "../providers/start/start-service.service";
 import { DaoProduct } from "../providers/dao/dao-product.service";
@@ -45,7 +46,7 @@ import { ListItemCreatePageModule } from "../pages/listitem/list-item-create-pag
   entryComponents: [
     MyApp, HomePage,],
   providers: [
-    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct, DaoMarket, DaoListItem,
+    StatusBar, SplashScreen, ActionSheet, DaoUnit, StartService, SQLite, Toast, DaoProduct, DaoMarket, DaoListItem, SQLjs, SQLjsObject,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

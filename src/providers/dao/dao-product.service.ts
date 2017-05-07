@@ -1,29 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { IDao } from "../../models/IDao";
 import { SQLiteObject } from "@ionic-native/sqlite";
+import { DaoAbstract } from "./dao-abstract.service";
 import { Product } from "../../models/class/Product";
 
 /*
-  Generated class for the DaoUnit provider.
+Generated class for the DaoUnit provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
+See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class DaoProduct implements IDao {
+export class DaoProduct extends DaoAbstract implements IDao {
 
-    db: SQLiteObject;
-
-    setDatabase(db: SQLiteObject) {
-        if ((typeof (this.db) == 'undefined')) {
-            console.log(db);
-            this.db = db;
-        }
-    }
-
-    constructor(public http: Http) {
+    constructor() {
+        super()
     }
 
     create(element: Product) {
@@ -44,27 +36,27 @@ export class DaoProduct implements IDao {
     getAll() {
         let sql = 'SELECT * FROM Product';
         return this.db.executeSql(sql, [])
-            .then(response => {
-                let Products = [];
-                for (let index = 0; index < response.rows.length; index++) {
-                    Products.push(response.rows.item(index));
-                }
-                return Promise.resolve(Products);
-            })
-            .catch(error => Promise.reject(error));
+        .then(response => {
+            let Products = [];
+            for (let index = 0; index < response.rows.length; index++) {
+                Products.push(response.rows.item(index));
+            }
+            return Promise.resolve(Products);
+        })
+        .catch(error => Promise.reject(error));
     }
 
     getById(id: number) {
         let sql = 'SELECT * FROM Product where nId = ?';
         return this.db.executeSql(sql, [id])
-            .then(response => {
-                let product;
-                for (let index = 0; index < response.rows.length; index++) {
-                    product = (response.rows.item(index));
-                }
-                return Promise.resolve(product);
-            })
-            .catch(error => Promise.reject(error));
+        .then(response => {
+            let product;
+            for (let index = 0; index < response.rows.length; index++) {
+                product = (response.rows.item(index));
+            }
+            return Promise.resolve(product);
+        })
+        .catch(error => Promise.reject(error));
     }
 
     update(element: Product) {
@@ -72,4 +64,8 @@ export class DaoProduct implements IDao {
         return this.db.executeSql(sql, [element.sName, element.nId]);
     }
 
+    deleteById(id: number){
+        let sql = 'DELETE FROM Product WHERE nId=?'
+        return this.db.executeSql(sql, [])
+    }
 }

@@ -16,7 +16,7 @@ export class HomePage {
   }
 
   openPage() {
-    this.nav.setRoot(ListItemListPage);
+    this.navCtrl.setRoot(ListItemListPage);
   }
 
 }
