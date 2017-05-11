@@ -38,7 +38,7 @@ script:
   - ionic build browser --prod
   - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
-  - sonar-scanner -Dsonar.token=$OWNSONAR_TOKEN
+  - sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br/ -Dsonar.token=$OWNSONAR_TOKEN 
 
 after_success:
     - ./node_modules/.bin/codecov -t $CODECOV_TOKEN

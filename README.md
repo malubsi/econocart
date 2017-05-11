@@ -1,7 +1,21 @@
 
 [![Build Status](https://travis-ci.org/malubsi/econocart.svg?branch=master)](https://travis-ci.org/malubsi/econocart)
+
 [![Code Coverage](https://codecov.io/gh/malubsi/econocart/branch/master/graph/badge.svg)](https://codecov.io/gh/malubsi/econocart)
-[![Quality Gate](https://sonarqube.com/api/badges/gate?key=pmdsys)](https://sonarqube.com/dashboard/index/pmdsys)
+
+[![Coverage](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=coverage)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Quality Gate](https://sonarqube.adlerneves.com.br/api/badges/gate?key=econocart)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Lines of Code](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=lines)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Bugs](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=bugs)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Vulnerabilities](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=vulnerabilities)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Code smells](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=code_smells)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+
+[![Debt Ratio](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=sqale_debt_ratio)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
 # EconoCart
 Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra.
