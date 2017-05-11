@@ -1,13 +1,23 @@
+# EconoCart
+Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra.
+
+## Build
+
+### Compila?
 
 [![Build Status](https://travis-ci.org/malubsi/econocart.svg?branch=master)](https://travis-ci.org/malubsi/econocart)
 
+### Linhas cobertas por testes
+
 [![Code Coverage](https://codecov.io/gh/malubsi/econocart/branch/master/graph/badge.svg)](https://codecov.io/gh/malubsi/econocart)
 
-[![Coverage](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=coverage)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+### SonarQube
+
+[![Lines of Code](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=lines)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
 [![Quality Gate](https://sonarqube.adlerneves.com.br/api/badges/gate?key=econocart)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
-[![Lines of Code](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=lines)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
+[![Coverage](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=coverage)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
 [![Bugs](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=bugs)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
@@ -17,8 +27,7 @@
 
 [![Debt Ratio](https://sonarqube.adlerneves.com.br/api/badges/measure?key=econocart&metric=sqale_debt_ratio)](https://sonarqube.adlerneves.com.br/dashboard?id=econocart)
 
-# EconoCart
-Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra.
+
 ## MiniMundo
 Um estabelecimento que comercializa lanches possui uma demanda semanal de produtos a serem comprados para a confecção dos lanches que serão comercializados durante aquela semana. Entretanto esse
 processo exige que o responsável pela compra anote todos os produtos que deverão ser comprados, assim como realize uma pesquisa entre os supermercados para identificar qual produto possui
