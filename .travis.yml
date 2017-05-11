@@ -23,7 +23,7 @@ addons:
 before_script:
     - mkdir www
     - wget https://github.com/SonarSource/sonar-scanner-cli/releases/download/2.6-rc1/sonar-scanner-2.6-SNAPSHOT.zip
-    - unzip https://github.com/SonarSource/sonar-scanner-cli/releases/download/2.6-rc1/sonar-scanner-2.6-SNAPSHOT.zip
+    - unzip sonar-scanner-2.6-SNAPSHOT.zip
     - npm install -g npm@latest
     - npm install -g karma cordova ionic
     - npm install
