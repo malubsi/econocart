@@ -3,8 +3,6 @@ sudo: required
 
 language: node_js
 node_js:
-  - node
-  - 6
   - 7
 
 jdk:
