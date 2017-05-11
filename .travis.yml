@@ -31,14 +31,14 @@ before_script:
     - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
-    - ionic platform remove browser
-    - ionic platform add browser
+    - ionic cordova platform remove browser
+    - ionic cordova platform add browser
 
 script:
-  - ionic build browser --prod
+  - ionic cordova build browser --prod
   - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
-  - sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br/ -Dsonar.token=$OWNSONAR_TOKEN 
+  - sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br -Dsonar.token=$OWNSONAR_TOKEN 
 
 after_success:
     - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
