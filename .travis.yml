@@ -43,5 +43,10 @@ script:
 after_success:
     - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
 
+cache:
+  directories:
+    - /home/travis/.sonar/cache
+    - node_modules
+
 notifications:
   slack: econocart:HmGTsUw1lVIfPG29d8JGjP5c
