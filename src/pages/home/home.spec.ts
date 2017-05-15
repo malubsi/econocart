@@ -21,9 +21,7 @@ describe('Pages: HomePage', () => {
         expect(instance).toBeTruthy();
     }));
 
-    /*
-    it('should have a clickable button', async(() => {
+    it('should have a clickable button to another page', async(() => {
         expect(instance.openPage()).toBeTruthy();
     }));
-    */
 });
