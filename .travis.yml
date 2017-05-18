@@ -44,7 +44,6 @@ after_success:
 cache:
   directories:
     - /home/travis/.sonar/cache
-    - node_modules
 
 notifications:
   slack: econocart:HmGTsUw1lVIfPG29d8JGjP5c
