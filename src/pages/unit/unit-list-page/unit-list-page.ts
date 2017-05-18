@@ -25,7 +25,7 @@ export class UnitListPage implements OnInit {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private actionSheet: ActionSheet, public alert: AlertController,
+    public alert: AlertController,
     private _daoUnit: DaoUnit, public actionSheetCtrl: ActionSheetController,
     private _toast: Toast) {
   }

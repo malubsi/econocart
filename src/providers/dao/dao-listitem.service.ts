@@ -15,6 +15,8 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export class DaoListItem extends DaoAbstract implements IDao {
 
+    public getSchema(){return [];}
+
     constructor(_sqlite: SQLite, private _daoProduct: DaoProduct) {
         super(_sqlite)
     }

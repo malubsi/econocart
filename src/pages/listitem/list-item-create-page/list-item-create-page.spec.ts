@@ -16,7 +16,6 @@ describe('Pages: ListItemCreatePage', () => {
         fixture = compiled.fixture;
         instance = compiled.instance;
     })));
-
     /*
     it('should create the start page', async(() => {
         expect(instance).toBeTruthy();

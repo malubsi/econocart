@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 declare var require:any;
 declare var SQL:any;
 
+//SQL = require("../../assets/SQL.js");
+
 @Injectable()
 export class SQLjs extends SQLite {
     create(config: SQLiteDatabaseConfig): Promise<SQLiteObject>{

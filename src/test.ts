@@ -17,8 +17,9 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { App, Config, Form, IonicModule, Keyboard, DomController} from 'ionic-angular';
 import { MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 import { AlertController, ActionSheetController, GestureController } from 'ionic-angular';
+import { ActionSheet } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
-import { ConfigMock, PlatformMock, NavParamsMock, AlertMock, daomock } from './mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock, daomock } from './mocks';
 import { DaoUnit } from './providers/dao/dao-unit.service'
 import { DaoMarket } from './providers/dao/dao-market.service'
 import { DaoProduct } from './providers/dao/dao-product.service'
@@ -49,7 +50,7 @@ __karma__.start();
 export class TestUtils {
 
     public static beforeEachCompiler(components: Array<any>): Promise<{fixture: any, instance: any}> {
-        //SQLjsObject.makeMock()
+        SQLjsObject.makeMock()
         return TestUtils.configureIonicTestingModule(components)
         .compileComponents().then(() => {
             let fixture: any = TestBed.createComponent(components[0]);
@@ -66,7 +67,7 @@ export class TestUtils {
                 ...components,
             ],
             providers: [
-                App, Form, Keyboard, DomController, MenuController, NavController,
+                App, Form, Keyboard, DomController, MenuController,
                 ActionSheetController, Toast, GestureController, Http,
                 {provide: DaoUnit, useClass: daomock},
                 {provide: DaoMarket, useClass: daomock},
@@ -75,6 +76,7 @@ export class TestUtils {
                 {provide: Platform, useClass: PlatformMock},
                 {provide: Config, useClass: ConfigMock},
                 {provide: NavParams, useClass: NavParamsMock},
+                {provide: NavController, useClass: NavMock},
                 {provide: AlertController, useClass: AlertMock},
                 {provide: SQLiteObject, useClass: SQLmockObject},
                 {provide: SQLite, useClass: SQLmock},
