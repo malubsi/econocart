@@ -1,37 +1,21 @@
-import {Input } from '@angular/core';
-import { Item } from "./Item";
 import 'rxjs/add/operator/map';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
+import { Item } from "./Item";
 import { Market } from "./Market";
 
-
+@Entity()
 export class Survey {
 
-    @Input() private _sDescription: string;
-    @Input() private _iListItem: Item[];
-    @Input() private _mMarket: Market;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-    constructor() {
-        this._iListItem = [];
-    }
+    @Column('text')
+    description: string;
 
-    public get sDescription(): string {
-        return this._sDescription
-    }
-    public set sDescription(description: string) {
-        this._sDescription = description;
-    }
+    @OneToMany(type => Item , item => item.survey)
+    items: Item[];
 
-    public get iListItem(): Item[] {
-        return this._iListItem
-    }
-    public set iListItem(listitem: Item[]) {
-        this._iListItem = listitem;
-    }
+    @ManyToOne(type => Market, market => market.surveys)
+    market: Market;
 
-    public get mMarket(): Market {
-        return this._mMarket
-    }
-    public set mMarket(market: Market) {
-        this._mMarket = market;
-    }
 }

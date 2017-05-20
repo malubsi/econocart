@@ -1,30 +1,17 @@
-import {Input } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Survey } from "./Survey";
 
+@Entity()
 export class List {
 
-    @Input() private _sDate: Date;
-    @Input() private _sListSurvey: Survey[];
+    @PrimaryGeneratedColumn()
+    id: number;
 
+    @Column()
+    date: Date;
 
-    constructor() {
-        
-    }
-
-    public get sDate(): Date {
-        return this._sDate
-    }
-    public set sDate(date: Date) {
-        this._sDate = date;
-    }
-
-    public get sListSurvey(): Survey[] {
-        return this._sListSurvey
-    }
-    public set sListSurvey(listsurvey: Survey[]) {
-        this._sListSurvey = listsurvey;
-    }
-
+    @OneToMany(type => Survey, survey => survey.list)
+    surveys: Survey[];
 
 }

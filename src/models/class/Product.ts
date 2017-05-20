@@ -1,25 +1,14 @@
-import { Input } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
-
+@Entity()
 export class Product {
 
-    @Input() private _sName: string;
-    @Input() private _nId: number;
-    constructor() {
+    @PrimaryGeneratedColumn()
+    id: number;
 
-    }
-    public get nId(): number {
-        return this._nId
-    }
-    public set nId(id: number) {
-        this._nId = id;
-    }
-    public get sName(): string {
-        return this._sName
-    }
-    public set sName(name: string) {
-        this._sName = name;
-    }
+    @Column()
+    name: string;
 
+    items: Item;
 }

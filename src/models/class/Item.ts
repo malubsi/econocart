@@ -1,48 +1,24 @@
-import {Input } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Product } from "./Product";
 import { Unit } from "./Unit";
 
+@Entity()
 export class Item {
 
-    @Input() private _pProduct: Product;
-    @Input() private _uUnit: Unit;
-    @Input() private _nAmount: number;
-    @Input() private _nPrice: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
+    @ManyToOne(type => Product, product => product.items)
+    product: Product;
 
-    constructor() {
+    @ManyToOne(type => Unit, unit => unit.items)
+    unit: Unit;
 
-    }
+    @Column("real")
+    amount: number;
 
-    public get pProduct(): Product {
-        return this._pProduct;
-    }
-    public set pProduct(product: Product) {
-        this._pProduct = product;
-    }
-
-
-    public get uUnit(): Unit {
-        return this._uUnit;
-    }
-    public set uUnit(unit: Unit) {
-        this._uUnit = unit;
-    }
-
-    public get nAmount(): number {
-        return this._nAmount;
-    }
-    public set nAmount(amount: number) {
-        this._nAmount = amount;
-    }
-
-
-    public get nPrice(): number {
-        return this._nPrice;
-    }
-    public set nPrice(price: number) {
-        this._nPrice = price;
-    }
+    @Column("real")
+    price: number;
 
 }
