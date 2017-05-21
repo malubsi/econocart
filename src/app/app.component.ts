@@ -3,13 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-
-import { HomePage } from '../pages/home/home';
-import { UnitListPage } from "../pages/unit/unit-list-page/unit-list-page";
-import { StartService } from "../providers/start/start-service.service";
-import { ProductListPage } from "../pages/product/product-list-page/product-list-page";
-import { MarketListPage } from "../pages/market/market-list-page/market-list-page";
-import { ListItemListPage } from "../pages/listitem/list-item-list-page/list-item-list-page";
+import { PageInicio } from '../pages/inicio/main';
 
 @Component({
     templateUrl: 'app.html'
@@ -17,20 +11,21 @@ import { ListItemListPage } from "../pages/listitem/list-item-list-page/list-ite
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = HomePage;
+    rootPage: any = PageInicio;
 
     pages: Array<{ title: string, component: any }>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private _starter: StartService) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
         this.pages = [
+            /*
             { title: 'Lista de Itens', component: ListItemListPage },
             { title: 'Supermercados', component: MarketListPage },
             { title: 'Produtos', component: ProductListPage },
             { title: 'Unidades', component: UnitListPage }
-
+            */
         ];
 
     }
@@ -41,7 +36,6 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             this.statusBar.styleDefault();
             this.splashScreen.hide();
-            this._starter.start();
         });
     }
 
@@ -51,6 +45,6 @@ export class MyApp {
         this.nav.setRoot(page.component);
     }
     btnOpenHome(){
-        this.openPage({component:HomePage})
+        this.openPage({component:PageInicio})
     }
 }

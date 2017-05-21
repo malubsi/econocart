@@ -17,14 +17,8 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { App, Config, Form, IonicModule, Keyboard, DomController} from 'ionic-angular';
 import { MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 import { AlertController, ActionSheetController, GestureController } from 'ionic-angular';
-import { ActionSheet } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock, daomock } from './mocks';
-import { DaoUnit } from './providers/dao/dao-unit.service'
-import { DaoMarket } from './providers/dao/dao-market.service'
-import { DaoProduct } from './providers/dao/dao-product.service'
-import { DaoListItem } from './providers/dao/dao-listitem.service'
-import { StartService } from './providers/start/start-service.service'
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;

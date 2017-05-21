@@ -1,13 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController , Nav} from 'ionic-angular';
 
-import { ListItemListPage } from "../listitem/list-item-list-page/list-item-list-page";
-
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html'
+    selector: 'page-inicio',
+    templateUrl: 'main.html'
 })
-export class HomePage {
+export class PageInicio {
 
     @ViewChild(Nav) nav: Nav;
 
@@ -16,7 +14,7 @@ export class HomePage {
     }
 
     openPage() {
-        return this.navCtrl.setRoot(ListItemListPage);
+        return this.navCtrl.setRoot(PageInicio);
     }
 
 }
