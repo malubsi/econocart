@@ -20,6 +20,7 @@ import { LoadingController } from 'ionic-angular';
 
 import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock } from './mocks';
 import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
+import { CrudProduto } from './providers/CrudProduto.service'
 import { OrmDatabase } from './persistence/OrmDatabase.service'
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
@@ -80,6 +81,7 @@ export class TestUtils {
                 {provide: AlertController, useClass: AlertMock},
                 OrmDatabase,
                 CrudUnidadeMedida,
+                CrudProduto,
             ],
             imports: [
                 FormsModule,
