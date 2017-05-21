@@ -1,4 +1,4 @@
-import { OrmDatabase } from '../persistence/OrmDatabase.service';
+import { OrmDatabase, Repository } from '../persistence/OrmDatabase.service';
 
 export abstract class CrudService<T>{
     constructor(
@@ -32,12 +32,13 @@ export abstract class CrudService<T>{
             )
         });
     }
+    abstract _listar(repository: Repository<T>): Promise<T[]>;
     listar(): Promise<T[]>{
         return new Promise<any>((resolve, reject) => {
             this.ormDatabase.getConnection().then(
                 connection => {
                     let repo = connection.getRepository(this.getType());
-                    repo.find().then(resolve,reject);
+                    this._listar(<Repository<T>>repo).then(resolve,reject);
                 },
                 reject
             )

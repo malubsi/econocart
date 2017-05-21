@@ -1,4 +1,4 @@
-import { Entity,  PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable } from "typeorm";
+import { Entity,  PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { EntidadeAbstrata } from "./_entidadeAbstrata";
 import { Necessidade } from "./Necessidade";
 import { Supermercado } from "./Supermercado";
@@ -12,10 +12,10 @@ export class Planejamento extends EntidadeAbstrata {
     @Column()
     nome: string = "";
 
-    @Column()
+    @CreateDateColumn()
     criacao: Date = new Date();
 
-    @Column()
+    @UpdateDateColumn()
     modificacao: Date = new Date();
 
     @OneToMany(type => Necessidade, other => other.planejamento)

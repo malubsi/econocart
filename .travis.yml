@@ -19,27 +19,27 @@ addons:
       - unzip
 
 before_script:
-    - mkdir www
-    - wget https://github.com/SonarSource/sonar-scanner-cli/releases/download/2.6-rc1/sonar-scanner-2.6-SNAPSHOT.zip
-    - unzip sonar-scanner-2.6-SNAPSHOT.zip
-    - npm install -g npm@latest
-    - npm install -g karma cordova ionic
-    - npm install
-    - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - npm install @ionic/cli-plugin-ionic-angular @ionic/cli-plugin-cordova
-    - ionic cordova platform remove browser
-    - ionic cordova platform add browser
+  - mkdir www
+  - wget https://github.com/SonarSource/sonar-scanner-cli/releases/download/2.6-rc1/sonar-scanner-2.6-SNAPSHOT.zip
+  - unzip sonar-scanner-2.6-SNAPSHOT.zip
+  - npm install -g npm@latest
+  - npm install -g karma cordova ionic
+  - npm install
+  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install @ionic/cli-plugin-ionic-angular @ionic/cli-plugin-cordova
+  - ionic cordova platform remove browser
+  - ionic cordova platform add browser
 
 script:
   - ionic cordova build browser --prod
   - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
-  - sonar-scanner-2.6-SNAPSHOT/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br -Dsonar.token=$OWNSONAR_TOKEN 
 
 after_success:
-    - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
+  - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
+  - sonar-scanner-2.6-SNAPSHOT/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br -Dsonar.token=$OWNSONAR_TOKEN 
 
 cache:
   directories:

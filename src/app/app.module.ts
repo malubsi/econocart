@@ -13,10 +13,13 @@ import 'rxjs/add/operator/toPromise';
 import { PageInicio } from '../pages/inicio/main';
 import { PageListaUnidadeMedida } from '../pages/ListaUnidadeMedida/main';
 import { PageFormUnidadeMedida } from '../pages/FormUnidadeMedida/main';
+import { PageListaProduto } from '../pages/ListaProduto/main';
+import { PageFormProduto } from '../pages/FormProduto/main';
 
 import { OrmDatabase } from '../persistence/OrmDatabase.service';
 import { Relatorios } from '../providers/Relatorios.service';
 import { CrudUnidadeMedida } from '../providers/CrudUnidadeMedida.service';
+import { CrudProduto } from '../providers/CrudProduto.service';
 
 @NgModule({
     declarations: [
@@ -24,6 +27,8 @@ import { CrudUnidadeMedida } from '../providers/CrudUnidadeMedida.service';
         PageInicio,
         PageListaUnidadeMedida,
         PageFormUnidadeMedida,
+        PageListaProduto,
+        PageFormProduto,
     ],
     imports: [
         BrowserModule,
@@ -38,6 +43,8 @@ import { CrudUnidadeMedida } from '../providers/CrudUnidadeMedida.service';
         PageInicio,
         PageListaUnidadeMedida,
         PageFormUnidadeMedida,
+        PageListaProduto,
+        PageFormProduto,
     ],
     providers: [
         StatusBar,
@@ -48,6 +55,7 @@ import { CrudUnidadeMedida } from '../providers/CrudUnidadeMedida.service';
         OrmDatabase,
         Relatorios,
         CrudUnidadeMedida,
+        CrudProduto,
     ]
 })
 export class AppModule { }

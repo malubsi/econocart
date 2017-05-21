@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { PageInicio } from '../pages/inicio/main';
 import { PageListaUnidadeMedida } from '../pages/ListaUnidadeMedida/main';
+import { PageListaProduto } from '../pages/ListaProduto/main';
 
 @Component({
     templateUrl: 'app.html'
@@ -27,6 +28,7 @@ export class MyApp {
             { title: 'Produtos', component: ProductListPage },
             { title: 'Unidades', component: UnitListPage }
             */
+            { title: 'Produtos', component: PageListaProduto },
             { title: 'Unidades de medida', component: PageListaUnidadeMedida },
         ];
 

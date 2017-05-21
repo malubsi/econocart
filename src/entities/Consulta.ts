@@ -1,4 +1,4 @@
-import { Entity,  PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity,  PrimaryGeneratedColumn, Column, ManyToOne, UpdateDateColumn } from "typeorm";
 import { EntidadeAbstrata } from "./_entidadeAbstrata";
 import { Necessidade } from "./Necessidade";
 import { Supermercado } from "./Supermercado";
@@ -9,7 +9,7 @@ export class Consulta extends EntidadeAbstrata {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @UpdateDateColumn()
     modificacao: Date = new Date();
 
     @Column('float')

@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -7,10 +6,6 @@ import { Loading } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { CrudService } from '../../providers/_crudService';
 
-@Component({
-    selector: 'page-lista',
-    templateUrl: '../generico_lista/main.html'
-})
 export abstract class PageLista<T> {
     constructor(
         public navCtrl: NavController,

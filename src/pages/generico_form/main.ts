@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { CrudService } from '../../providers/_crudService';
 
-@Component({
-    selector: 'page-form',
-    templateUrl: '../generico_form/main.html'
-})
 export abstract class PageForm<T> {
     constructor(
         public navCtrl: NavController,
@@ -17,6 +12,7 @@ export abstract class PageForm<T> {
         this.editing = navParams.get('sujeito');
         this.crud = navParams.get('crud');
         this.selectables = navParams.get('selecionaveis');
+        console.log(this.editing,this.selectables)
     }
     public editing: T;
     public crud: CrudService<T>;
@@ -29,6 +25,16 @@ export abstract class PageForm<T> {
             this.editing[this.fields[fieldIndex]['entity']] = this.fields[fieldIndex]['data']
             if(this.fields[fieldIndex]['verifywith'] === 'length'){
                 if(this.fields[fieldIndex]['data'].length<=0){
+                    this.toastCtrl.create({
+                        message: "Falha na validação",
+                        duration: 1500,
+                        position: 'top'
+                    }).present();
+                    return
+                }
+            }
+            if(this.fields[fieldIndex]['verifywith'] === 'truthy'){
+                if(this.fields[fieldIndex]['data']){}else{
                     this.toastCtrl.create({
                         message: "Falha na validação",
                         duration: 1500,

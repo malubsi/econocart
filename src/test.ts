@@ -18,7 +18,7 @@ import { ToastController } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { LoadingController } from 'ionic-angular';
 
-import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock, daomock } from './mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock } from './mocks';
 import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
 import { OrmDatabase } from './persistence/OrmDatabase.service'
 
