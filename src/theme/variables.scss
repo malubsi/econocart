@@ -24,12 +24,24 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #ff7d4d,
-  secondary:  #4d76ff,
-  tertiary:   #4dffd6,
-  danger:     #4dff7d,
-  light:      #f4f4f4,
-  dark:       #222
+primary:    #387ef5,
+secondary:  #32db64,
+danger:     #f53d3d,
+light:      #f4f4f4,
+dark:       #222,
+bootstrapPrimary: #025aa5,
+bootstrapSecondary: #e6e6e6,
+bootstrapSuccess: #5cb85c,
+bootstrapInfo: #5bc0de,
+bootstrapWarning: #f0ad4e,
+bootstrapDanger: #d9534f,
+logotipoFundo: #e0e0d1,
+logotipoFundoEscuro: #bbbaae,
+logotipoFundoEscuroEscuro: #9d9c92,
+logotipoCesta: #e0995e,
+logotipoCestaEscuro: #bb8152,
+logotipoCestaEscuroEscuro: #9d6e48,
+logotipoAlca: #4f5d73,
 );
 
 

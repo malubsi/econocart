@@ -10,15 +10,17 @@ import 'zone.js/dist/fake-async-test';
 import { Http } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { SQLiteObject, SQLite } from "@ionic-native/sqlite";
-import { SQLjsObject, SQLjs } from "./providers/SQLjsDriver/SQLjs.service";
-import { SQLmockObject, SQLmock } from './mocks';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { App, Config, Form, IonicModule, Keyboard, DomController} from 'ionic-angular';
 import { MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 import { AlertController, ActionSheetController, GestureController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
+import { LoadingController } from 'ionic-angular';
+
 import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock, daomock } from './mocks';
+import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
+import { OrmDatabase } from './persistence/OrmDatabase.service'
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -44,7 +46,6 @@ __karma__.start();
 export class TestUtils {
 
     public static beforeEachCompiler(components: Array<any>): Promise<{fixture: any, instance: any}> {
-        SQLjsObject.makeMock()
         return TestUtils.configureIonicTestingModule(components)
         .compileComponents().then(() => {
             let fixture: any = TestBed.createComponent(components[0]);
@@ -61,21 +62,24 @@ export class TestUtils {
                 ...components,
             ],
             providers: [
-                App, Form, Keyboard, DomController, MenuController,
-                ActionSheetController, Toast, GestureController, Http,
-                {provide: DaoUnit, useClass: daomock},
-                {provide: DaoMarket, useClass: daomock},
-                {provide: DaoProduct, useClass: daomock},
-                {provide: DaoListItem, useClass: daomock},
+                App,
+                Form,
+                Keyboard,
+                DomController,
+                MenuController,
+                ActionSheetController,
+                Toast,
+                ToastController,
+                GestureController,
+                Http,
+                LoadingController,
                 {provide: Platform, useClass: PlatformMock},
                 {provide: Config, useClass: ConfigMock},
                 {provide: NavParams, useClass: NavParamsMock},
                 {provide: NavController, useClass: NavMock},
                 {provide: AlertController, useClass: AlertMock},
-                {provide: SQLiteObject, useClass: SQLmockObject},
-                {provide: SQLite, useClass: SQLmock},
-                {provide: SQLjsObject, useClass: SQLmockObject},
-                {provide: SQLjs, useClass: SQLmock},
+                OrmDatabase,
+                CrudUnidadeMedida,
             ],
             imports: [
                 FormsModule,

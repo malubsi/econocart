@@ -1,18 +1,23 @@
-import { Column, ManyToOne } from "typeorm";
-import { EntidadeAbstrata } from "./EntidadeAbstrata";
+import { Entity,  PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { EntidadeAbstrata } from "./_entidadeAbstrata";
 import { Necessidade } from "./Necessidade";
 import { Supermercado } from "./Supermercado";
 
+
+@Entity()
 export class Consulta extends EntidadeAbstrata {
+    @PrimaryGeneratedColumn()
+    id: number;
+
     @Column()
-    modificacao: Date;
+    modificacao: Date = new Date();
 
     @Column('float')
-    preco: number;
+    preco: number = 0;
 
     @ManyToOne(type => Necessidade, other => other.consultas)
-    necessidade: Necessidade;
+    necessidade: Necessidade = null;
 
     @ManyToOne(type => Supermercado, other => other.consultas)
-    supermercado: Supermercado;
+    supermercado: Supermercado = null;
 }

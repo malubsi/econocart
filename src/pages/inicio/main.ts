@@ -1,20 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController , Nav} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
+import { PageListaUnidadeMedida } from '../ListaUnidadeMedida/main'
 
 @Component({
     selector: 'page-inicio',
     templateUrl: 'main.html'
 })
 export class PageInicio {
-
-    @ViewChild(Nav) nav: Nav;
-
-    constructor(public navCtrl: NavController) {
-
-    }
-
+    constructor(public navCtrl: NavController){}
     openPage() {
-        return this.navCtrl.setRoot(PageInicio);
+        return this.navCtrl.setRoot(PageListaUnidadeMedida);
     }
-
 }

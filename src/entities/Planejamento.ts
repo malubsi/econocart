@@ -1,21 +1,27 @@
-import { Column, ManyToMany, OneToMany } from "typeorm";
-import { EntidadeAbstrata } from "./EntidadeAbstrata";
+import { Entity,  PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable } from "typeorm";
+import { EntidadeAbstrata } from "./_entidadeAbstrata";
 import { Necessidade } from "./Necessidade";
 import { Supermercado } from "./Supermercado";
 
+
+@Entity()
 export class Planejamento extends EntidadeAbstrata {
-    @Column()
-    nome: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
-    criacao: Date;
+    nome: string = "";
 
     @Column()
-    modificacao: Date;
+    criacao: Date = new Date();
+
+    @Column()
+    modificacao: Date = new Date();
 
     @OneToMany(type => Necessidade, other => other.planejamento)
-    necessidades: Necessidade[];
+    necessidades: Necessidade[] = [];
 
     @ManyToMany(type => Supermercado, other => other.planejamentos)
-    supermercados: Supermercado[];
+    @JoinTable()
+    supermercados: Supermercado[] = [];
 }

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="logotipoFundo">
+        <ion-title>{{ 'Editando' }} {{ titulo }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let field of fields">
+            <ion-label floating>
+                {{ field.label }}
+            </ion-label>
+            <ion-input *ngIf="field.type == 'textbox'" type="text" [(ngModel)]="field.data"></ion-input>-->
+            <ion-select *ngIf="field.type == 'select'" [(ngModel)]="field.data" multiple="field.multiple">
+                <ion-option *ngFor="let item of selectablesFor(field.entity)" [value]="item">
+                    {{ textOption(field.entity, item) }}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item style="text-align: right;">
+            <button ion-button large color="bootstrapSuccess" (click)="save()">
+                <ion-icon name="checkmark"></ion-icon>
+                &nbsp;
+                Salvar
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

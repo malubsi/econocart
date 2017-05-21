@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="logotipoCesta">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ textos.titulo }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <button ion-item *ngIf="textos.adicionar" (click)="add()">
+            <ion-icon name="add"></ion-icon>
+            &nbsp;
+            {{ textos.adicionar }}
+        </button>
+        <button ion-item *ngFor="let item of items" (click)="click(item)">
+            <ion-icon *ngIf="icone" name="{{ icone }}"></ion-icon>
+            <span class="text-end text-muted">
+                {{ posTexto(item) }}
+            </span>
+            &nbsp;
+            <span>
+                {{ texto(item) }}
+            </span>
+        </button>
+    </ion-list>
+</ion-content>

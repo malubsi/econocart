@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { PageInicio } from '../pages/inicio/main';
+import { PageListaUnidadeMedida } from '../pages/ListaUnidadeMedida/main';
 
 @Component({
     templateUrl: 'app.html'
@@ -26,6 +27,7 @@ export class MyApp {
             { title: 'Produtos', component: ProductListPage },
             { title: 'Unidades', component: UnitListPage }
             */
+            { title: 'Unidades de medida', component: PageListaUnidadeMedida },
         ];
 
     }
@@ -34,8 +36,9 @@ export class MyApp {
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            this.statusBar.styleDefault();
+            this.statusBar.backgroundColorByHexString('#9d6e48');
             this.splashScreen.hide();
+
         });
     }
 
