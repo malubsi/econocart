@@ -12,7 +12,6 @@ export abstract class PageForm<T> {
         this.editing = navParams.get('sujeito');
         this.crud = navParams.get('crud');
         this.selectables = navParams.get('selecionaveis');
-        console.log(this.editing,this.selectables)
     }
     public editing: T;
     public crud: CrudService<T>;
