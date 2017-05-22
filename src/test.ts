@@ -21,6 +21,10 @@ import { LoadingController } from 'ionic-angular';
 import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock } from './mocks';
 import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
 import { CrudProduto } from './providers/CrudProduto.service'
+import { CrudConsulta } from './providers/CrudConsulta.service';
+import { CrudNecessidade } from './providers/CrudNecessidade.service';
+import { CrudPlanejamento } from './providers/CrudPlanejamento.service';
+import { CrudSupermercado } from './providers/CrudSupermercado.service';
 import { OrmDatabase } from './persistence/OrmDatabase.service'
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
@@ -82,6 +86,10 @@ export class TestUtils {
                 OrmDatabase,
                 CrudUnidadeMedida,
                 CrudProduto,
+                CrudConsulta,
+                CrudNecessidade,
+                CrudPlanejamento,
+                CrudSupermercado,
             ],
             imports: [
                 FormsModule,
