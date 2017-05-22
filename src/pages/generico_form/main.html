@@ -11,7 +11,12 @@
                 {{ field.label }}
             </ion-label>
             <ion-input *ngIf="field.type == 'textbox'" type="text" [(ngModel)]="field.data"></ion-input>-->
-            <ion-select *ngIf="field.type == 'select'" [(ngModel)]="field.data" multiple="field.multiple">
+            <ion-select *ngIf="field.type == 'select'" [(ngModel)]="field.data" multiple="false">
+                <ion-option *ngFor="let item of selectablesFor(field.entity)" [value]="item">
+                    {{ textOption(field.entity, item) }}
+                </ion-option>
+            </ion-select>
+            <ion-select *ngIf="field.type == 'selectmultiple'" [(ngModel)]="field.data" multiple="true">
                 <ion-option *ngFor="let item of selectablesFor(field.entity)" [value]="item">
                     {{ textOption(field.entity, item) }}
                 </ion-option>

@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PageInicio } from '../pages/inicio/main';
 import { PageListaUnidadeMedida } from '../pages/ListaUnidadeMedida/main';
 import { PageListaProduto } from '../pages/ListaProduto/main';
+import { PageListaSupermercado } from '../pages/ListaSupermercado/main';
+import { PageListaCompras } from '../pages/ListaCompras/main';
 
 @Component({
     templateUrl: 'app.html'
@@ -28,6 +30,8 @@ export class MyApp {
             { title: 'Produtos', component: ProductListPage },
             { title: 'Unidades', component: UnitListPage }
             */
+            { title: 'Lista de compras', component: PageListaCompras },
+            { title: 'Supermercados', component: PageListaSupermercado },
             { title: 'Produtos', component: PageListaProduto },
             { title: 'Unidades de medida', component: PageListaUnidadeMedida },
         ];

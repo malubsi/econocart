@@ -3,13 +3,13 @@ import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { PageForm } from '../generico_form/main';
-import { Produto } from '../../entities/Produto';
+import { Planejamento } from '../../entities/Planejamento';
 
 @Component({
     selector: 'page-form',
     templateUrl: '../generico_form/main.html'
 })
-export class PageFormProduto extends PageForm<Produto> {
+export class PageFormCompras extends PageForm<Planejamento> {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -52,10 +52,10 @@ export class PageFormProduto extends PageForm<Produto> {
     }
     public textOption(field: string, item: any): string{
         let r = '';
-        if(field == 'unidadeMedida'){ r = item['nome'] }
+        if(field=="supermercados"){ r = item['nome'] }
         return r;
-    };
-    public titulo: string = "produto";
+    }
+    public titulo: string = "lista de compras";
     public fields: object[] = [
         {
             type: 'textbox',
@@ -64,10 +64,10 @@ export class PageFormProduto extends PageForm<Produto> {
             verifywith: 'length'
         },
         {
-            type: 'select',
-            label: 'Unidade de medida',
-            entity: 'unidadeMedida',
-            verifywith: 'truthy'
+            type: 'selectmultiple',
+            label: 'Supermercados',
+            entity: 'supermercados',
+            verifywith: 'length'
         },
     ];
 }

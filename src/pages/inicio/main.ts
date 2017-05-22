@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { PageListaUnidadeMedida } from '../ListaUnidadeMedida/main'
+import { PageListaCompras } from '../ListaCompras/main'
 
 @Component({
     selector: 'page-inicio',
@@ -10,6 +10,6 @@ import { PageListaUnidadeMedida } from '../ListaUnidadeMedida/main'
 export class PageInicio {
     constructor(public navCtrl: NavController){}
     openPage() {
-        return this.navCtrl.setRoot(PageListaUnidadeMedida);
+        return this.navCtrl.setRoot(PageListaCompras);
     }
 }
