@@ -27,6 +27,6 @@ export class CrudNecessidade extends CrudService<Necessidade>{
     }
 
     _ordena(query: QueryBuilder<Necessidade>): QueryBuilder<Necessidade>{
-        return query.orderBy("quantidade")
+        return query.orderBy("tbl.quantidade")
     }
 }
