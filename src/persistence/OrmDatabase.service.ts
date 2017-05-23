@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { createConnection, getConnection } from 'ionic-typeorm'
 import { Connection } from 'ionic-typeorm'
+
 export { Repository } from 'ionic-typeorm'
+export { QueryBuilder } from 'ionic-typeorm'
 
 import { Consulta } from '../entities/Consulta';
 import { Necessidade } from '../entities/Necessidade';

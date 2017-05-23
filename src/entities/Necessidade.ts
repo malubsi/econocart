@@ -15,8 +15,8 @@ export class Necessidade extends EntidadeAbstrata {
     @Column()
     satisfeita: boolean = false;
 
-    @OneToMany(type => Produto, other => other.necessidade)
-    produtos: Produto[] = [];
+    @ManyToOne(type => Produto, other => other.necessidades)
+    produto: Produto = null;
 
     @OneToMany(type => Consulta, other => other.necessidade)
     consultas: Consulta[] = [];

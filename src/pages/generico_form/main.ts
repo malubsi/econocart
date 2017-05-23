@@ -23,7 +23,7 @@ export abstract class PageForm<T> {
         for(let fieldIndex in this.fields){
             this.editing[this.fields[fieldIndex]['entity']] = this.fields[fieldIndex]['data']
             if(this.fields[fieldIndex]['verifywith'] === 'length'){
-                if(this.fields[fieldIndex]['data'].length<=0){
+                if(!this.fields[fieldIndex]['data'].hasOwnProperty('length') || this.fields[fieldIndex]['data'].length<=0){
                     this.toastCtrl.create({
                         message: "Falha na validação",
                         duration: 1500,
@@ -43,6 +43,7 @@ export abstract class PageForm<T> {
                 }
             }
         }
+        console.log(this.editing)
         this.crud.salvar(this.editing).then(()=>{
             this.navCtrl.pop()
         })

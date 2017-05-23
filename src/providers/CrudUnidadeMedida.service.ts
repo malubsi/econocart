@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { UnidadeMedida } from '../entities/UnidadeMedida';
-import { OrmDatabase, Repository } from '../persistence/OrmDatabase.service';
+import { OrmDatabase, Repository, QueryBuilder } from '../persistence/OrmDatabase.service';
 import { CrudService } from '../providers/_crudService';
 
 @Injectable()
@@ -12,18 +12,19 @@ export class CrudUnidadeMedida extends CrudService<UnidadeMedida>{
         super(ormDatabase);
     }
 
-    getType(){return UnidadeMedida}
-
     criar(): UnidadeMedida{
         return new UnidadeMedida();
     }
-    _listar(repository:Repository<UnidadeMedida>):Promise<UnidadeMedida[]>{
-        return new Promise<UnidadeMedida[]>((resolve, reject) => {
-            resolve(repository
-                .createQueryBuilder("tbl")
-                .leftJoinAndSelect("tbl.produtos", "produtos")
-                .getMany()
-            );
-        })
+
+    _getType(){return UnidadeMedida}
+
+    _seleciona(repository:Repository<UnidadeMedida>):QueryBuilder<UnidadeMedida>{
+        return repository
+        .createQueryBuilder("tbl")
+        .leftJoinAndSelect("tbl.produtos", "produtos")
+    }
+
+    _ordena(query: QueryBuilder<UnidadeMedida>): QueryBuilder<UnidadeMedida>{
+        return query.orderBy("tbl.nome")
     }
 }

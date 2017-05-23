@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Produto } from '../entities/Produto';
-import { OrmDatabase, Repository } from '../persistence/OrmDatabase.service';
+import { OrmDatabase, Repository, QueryBuilder } from '../persistence/OrmDatabase.service';
 import { CrudService } from '../providers/_crudService';
 
 @Injectable()
@@ -12,19 +12,20 @@ export class CrudProduto extends CrudService<Produto>{
         super(ormDatabase);
     }
 
-    getType(){return Produto}
-
     criar(): Produto{
         return new Produto();
     }
-    _listar(repository:Repository<Produto>):Promise<Produto[]>{
-        return new Promise<Produto[]>((resolve, reject) => {
-            resolve(repository
-                .createQueryBuilder("tbl")
-                .leftJoinAndSelect("tbl.unidadeMedida", "unidadeMedida")
-                .leftJoinAndSelect("tbl.necessidade", "necessidade")
-                .getMany()
-            );
-        })
+
+    _getType(){return Produto}
+
+    _seleciona(repository:Repository<Produto>):QueryBuilder<Produto>{
+        return repository
+        .createQueryBuilder("tbl")
+        .leftJoinAndSelect("tbl.unidadeMedida", "unidadeMedida")
+        .leftJoinAndSelect("tbl.necessidade", "necessidade")
+    }
+
+    _ordena(query: QueryBuilder<Produto>): QueryBuilder<Produto>{
+        return query.orderBy("tbl.nome")
     }
 }
