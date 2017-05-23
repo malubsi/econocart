@@ -21,7 +21,7 @@ export class CrudNecessidade extends CrudService<Necessidade>{
     _seleciona(repository:Repository<Necessidade>):QueryBuilder<Necessidade>{
         return repository
         .createQueryBuilder("tbl")
-        .leftJoinAndSelect("tbl.produtos", "produtos")
+        .leftJoinAndSelect("tbl.produto", "produto")
         .leftJoinAndSelect("tbl.consultas", "consultas")
         .leftJoinAndSelect("tbl.planejamento", "planejamento")
     }

@@ -22,7 +22,7 @@ export class CrudProduto extends CrudService<Produto>{
         return repository
         .createQueryBuilder("tbl")
         .leftJoinAndSelect("tbl.unidadeMedida", "unidadeMedida")
-        .leftJoinAndSelect("tbl.necessidade", "necessidade")
+        .leftJoinAndSelect("tbl.necessidades", "necessidades")
     }
 
     _ordena(query: QueryBuilder<Produto>): QueryBuilder<Produto>{
