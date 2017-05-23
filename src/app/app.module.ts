@@ -19,6 +19,7 @@ import { PageListaSupermercado } from '../pages/ListaSupermercado/main';
 import { PageFormSupermercado } from '../pages/FormSupermercado/main';
 import { PageListaCompras } from '../pages/ListaCompras/main';
 import { PageFormCompras } from '../pages/FormCompras/main';
+import { PageListaItensCompra } from '../pages/ListaItensCompra/main';
 
 import { OrmDatabase } from '../persistence/OrmDatabase.service';
 import { Relatorios } from '../providers/Relatorios.service';
@@ -41,6 +42,7 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         PageFormSupermercado,
         PageListaCompras,
         PageFormCompras,
+        PageListaItensCompra,
     ],
     imports: [
         BrowserModule,
@@ -61,6 +63,7 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         PageFormSupermercado,
         PageListaCompras,
         PageFormCompras,
+        PageListaItensCompra,
     ],
     providers: [
         StatusBar,

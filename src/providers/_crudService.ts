@@ -1,47 +1,73 @@
-import { OrmDatabase, Repository } from '../persistence/OrmDatabase.service';
+import { OrmDatabase, Repository, QueryBuilder } from '../persistence/OrmDatabase.service';
+import { Dao } from './_dao'
 
-export abstract class CrudService<T>{
+export abstract class CrudService<T> implements Dao<T>{
     constructor(
         public ormDatabase: OrmDatabase
     ){
     }
 
-    abstract getType():any;
-
     abstract criar(): T;
 
-    salvar(dado: T): Promise<any>{
-        return new Promise<any>((resolve, reject) => {
+    abstract _getType(): any;
+
+    abstract _ordena(query: QueryBuilder<T>): QueryBuilder<T>;
+
+    abstract _seleciona(repository: Repository<T>): QueryBuilder<T>;
+
+    salvar(dado: T): Promise<T>{
+        return new Promise<T>((resolve, reject) => {
             this.ormDatabase.getConnection().then(
                 connection => {
-                    let repo = connection.getRepository(this.getType());
+                    let repo = connection.getRepository(this._getType());
                     repo.persist(dado).then(resolve,reject);
                 },
                 reject
             )
         });
     }
-    apagar(dado: T): Promise<any>{
-        return new Promise<any>((resolve, reject) => {
+    apagar(dado: T): Promise<T>{
+        return new Promise<T>((resolve, reject) => {
             this.ormDatabase.getConnection().then(
                 connection => {
-                    let repo = connection.getRepository(this.getType());
+                    let repo = connection.getRepository(this._getType());
                     repo.remove(dado).then(resolve,reject);
                 },
                 reject
             )
         });
     }
-    abstract _listar(repository: Repository<T>): Promise<T[]>;
     listar(): Promise<T[]>{
         return new Promise<any>((resolve, reject) => {
             this.ormDatabase.getConnection().then(
                 connection => {
-                    let repo = connection.getRepository(this.getType());
-                    this._listar(<Repository<T>>repo).then(resolve,reject);
+                    let repo = connection.getRepository(this._getType());
+                    this._ordena(this._seleciona(<Repository<T>>repo)).getMany().then(resolve,reject);
                 },
                 reject
             )
         });
+    }
+    obterId(id: number): Promise<T[]>{
+        return new Promise<any>((resolve, reject) => {
+            this.ormDatabase.getConnection().then(
+                connection => {
+                    let repo = connection.getRepository(this._getType());
+                    this._ordena(this._seleciona(<Repository<T>>repo).where("tbl.id = :id", { 'id': id })).getOne().then(resolve,reject);
+                },
+                reject
+            )
+        });
+    }
+    recarregar(inst: T): Promise<T[]>{
+        return new Promise<any>((resolve, reject) => {
+            if(inst['id']){
+                this.obterId(inst['id']).then(resolve,reject)
+                return
+            }else{
+                reject()
+                return
+            }
+        })
     }
 }

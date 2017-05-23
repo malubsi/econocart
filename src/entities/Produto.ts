@@ -1,4 +1,4 @@
-import { Entity,  PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity,  PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { EntidadeAbstrata } from "./_entidadeAbstrata";
 import { UnidadeMedida } from "./UnidadeMedida";
 import { Necessidade } from "./Necessidade";
@@ -15,6 +15,6 @@ export class Produto extends EntidadeAbstrata {
     @ManyToOne(type => UnidadeMedida, other => other.produtos)
     unidadeMedida: UnidadeMedida = null;
 
-    @ManyToOne(type => Necessidade, other => other.produtos)
-    necessidade: Necessidade = null;
+    @OneToMany(type => Necessidade, other => other.produto)
+    necessidades: Necessidade[] = [];
 }

@@ -25,7 +25,7 @@ export abstract class PageLista<T> {
     public contextoExibe: object = {
         excluir: true,
         editar: true,
-        personalizado: false,
+        personalizado: [],
     };
     ionViewWillEnter(){
         this.refreshList();
@@ -42,7 +42,12 @@ export abstract class PageLista<T> {
     public add():void{
         this.abreEdicao(this.crud.criar());
     };
+    public getClicado():T{
+        return this.clicado;
+    }
+    public clicado: T;
     public click(item: T):void{
+        this.clicado = item;
         let self = this;
         let botoes = new Array<any>();
         let botaoEditar = {
@@ -89,7 +94,7 @@ export abstract class PageLista<T> {
                 confirm.present();
             }
         }
-        if(this.contextoExibe['personalizado']!==false){ botoes.push(this.contextoExibe['personalizado']) };
+        for(let personalizado of this.contextoExibe['personalizado']){ botoes.push(personalizado) };
         if(this.contextoExibe['excluir']){ botoes.push(botaoExcluir) };
         if(this.contextoExibe['editar']){ botoes.push(botaoEditar) };
         botoes.push({
