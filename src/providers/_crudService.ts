@@ -99,8 +99,8 @@ export abstract class CrudService<T> implements Dao<T>{
                     this._ordena(
                         this._seleciona(
                             <Repository<T>>repo
-                        ).andWhereInIds /* função experimental não documentada */ (
-                            ids
+                        ).where(
+                            'tbl.id in ('+ids.join(',')+')'
                         )
                     ).getMany(
                     ).then(resolve,reject);

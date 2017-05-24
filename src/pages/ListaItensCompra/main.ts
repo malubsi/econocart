@@ -6,10 +6,12 @@ import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { Necessidade } from '../../entities/Necessidade';
+import { Planejamento } from '../../entities/Planejamento';
 import { CrudNecessidade } from '../../providers/CrudNecessidade.service';
-import { CrudSupermercado } from '../../providers/CrudSupermercado.service';
+import { CrudPlanejamento } from '../../providers/CrudPlanejamento.service';
+import { CrudProduto } from '../../providers/CrudProduto.service';
 import { PageLista } from '../generico_lista/main';
-import { PageFormCompras } from '../FormCompras/main';
+import { PageFormItensCompra } from '../FormItensCompra/main';
 
 @Component({
     selector: 'page-lista',
@@ -24,7 +26,8 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
         public loadingCtrl: LoadingController,
         public necessidadeCrud: CrudNecessidade,
         public navParams: NavParams,
-        public supermercadoCrud: CrudSupermercado,
+        public produtoCrud: CrudProduto,
+        public planejamentoCrud: CrudPlanejamento,
     ){
         super(
             navCtrl,
@@ -32,13 +35,32 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
             alert,
             toast,
             loadingCtrl,
-            necessidadeCrud
+            necessidadeCrud,
         );
-        this.contextoExibe['personalizado'].push({
-            text: 'Gerenciar itens de compra',
-            role: 'manage',
-            icon: 'settings',
-            handler: () => {}
+        this.subject = navParams.get('sujeito')
+    }
+    public subject: Planejamento;
+    refreshList(){
+        this.mostraCarregando();
+        this.planejamentoCrud.recarregarUm(this.subject).then( planejamento => {
+            this.subject = planejamento
+            this.necessidadeCrud.recarregarAlguns(planejamento.necessidades).then(necessidades => {
+                this.produtoCrud.listar().then(produtos => {
+                    for(let necessidade in necessidades){
+                        for(let produto of produtos){
+                            if(
+                                necessidades[necessidade].produto
+                                &&
+                                necessidades[necessidade].produto.id == produto.id
+                            ){
+                                necessidades[necessidade].produto = produto
+                            }
+                        }
+                    }
+                    this.items = this.ordenaExibicao(necessidades);
+                    this.escondeCarregando()
+                })
+            });
         })
     }
     public items: Necessidade[] = new Array();
@@ -50,16 +72,25 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
         "artigoentidade": "o item de compra",
         "capitalEntidade": "Item de compra",
     };
-    public texto(item: Necessidade):string{ return item.produto.nome; };
-    public posTexto(item: Necessidade):string{ return (item.quantidade || '?') + " itens"; };
+    public texto(item: Necessidade):string{ return (item.produto || {nome:'<deletado>'}).nome; };
+    public posTexto(item: Necessidade):string{
+        return ((item.quantidade || '?')+" "+
+        (((item.produto || {unidadeMedida:null}).unidadeMedida || {nome:'iten'}).nome)
+        +(item.quantidade>1 ? 's' : ''))
+    };
+    public add():void{
+        let novo = this.crud.criar()
+        novo.planejamento = this.subject
+        this.abreEdicao(novo);
+    };
     public abreEdicao(item: Necessidade):void{
-        this.supermercadoCrud.listar().then(
-            supermercados => {
-                this.navCtrl.push(PageFormCompras,{
+        this.produtoCrud.listar().then(
+            produto => {
+                this.navCtrl.push(PageFormItensCompra,{
                     sujeito: item,
-                    crud: this.crud,
+                    crud: this.necessidadeCrud,
                     selecionaveis: {
-                        'supermercados': supermercados
+                        'produto': produto
                     },
                 });
             }
@@ -67,8 +98,8 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
     };
     public ordenaExibicao(items: Necessidade[]):Necessidade[]{
         items.sort((a, b) => {
-            if (a.produto.nome > b.produto.nome) { return 1; }
-            if (a.produto.nome < b.produto.nome) { return -1; }
+            if ((a.produto || {nome:'<deletado>'}).nome > (b.produto || {nome:'<deletado>'}).nome) { return 1; }
+            if ((a.produto || {nome:'<deletado>'}).nome < (b.produto || {nome:'<deletado>'}).nome) { return -1; }
             if (a.quantidade > b.quantidade) { return 1; }
             if (a.quantidade < b.quantidade) { return -1; }
             return 0;
