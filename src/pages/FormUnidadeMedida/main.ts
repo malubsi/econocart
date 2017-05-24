@@ -16,9 +16,7 @@ export class PageFormUnidadeMedida extends PageForm<UnidadeMedida> {
         public toastCtrl: ToastController,
     ){
         super(navCtrl, navParams, toastCtrl);
-        for(let fieldIndex in this.fields){
-            this.fields[fieldIndex]['data'] = this.editing[this.fields[fieldIndex]['entity']]
-        }
+        this.postSuper();
     }
     public textOption(field: string, item: any): string{ return ''; };
     public titulo: string = "unidade de medida";

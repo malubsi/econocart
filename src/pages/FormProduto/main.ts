@@ -16,39 +16,7 @@ export class PageFormProduto extends PageForm<Produto> {
         public toastCtrl: ToastController,
     ){
         super(navCtrl, navParams, toastCtrl);
-        for(let fieldIndex in this.fields){
-            this.fields[fieldIndex]['data'] = this.editing[this.fields[fieldIndex]['entity']]
-        }
-        for(let field of this.fields){
-            if(field['type'] == 'select'){
-                for(let fieldIndex in this.fields){
-                    let saved = this.fields[fieldIndex]['data']
-                    let avail = this.selectablesFor(field['entity'])
-                    if(saved && saved.id){
-                        for(let placeable of avail){
-                            if(placeable.id == saved.id){
-                                this.fields[fieldIndex]['data'] = placeable
-                            }
-                        }
-                    }
-                }
-            }
-            if(field['type'] == 'selectmultiple'){
-                for(let fieldIndex in this.fields){
-                    let saveds = this.fields[fieldIndex]['data']
-                    let avail = this.selectablesFor(field['entity'])
-                    for(let savi in saveds){
-                        if(saveds[savi] && saveds[savi].id){
-                            for(let placeable of avail){
-                                if(placeable.id == saveds[savi].id){
-                                    this.fields[fieldIndex]['data'][savi] = placeable
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        this.postSuper();
     }
     public textOption(field: string, item: any): string{
         let r = '';

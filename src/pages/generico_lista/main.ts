@@ -82,6 +82,7 @@ export abstract class PageLista<T> {
             text: 'Deletar',
             role: 'destructive',
             icon: 'trash',
+            cssClass: "deleteToast",
             handler: () => {
                 let confirm = this.alert.create({
                     title: "Excluir",
@@ -94,15 +95,17 @@ export abstract class PageLista<T> {
                 confirm.present();
             }
         }
-        for(let personalizado of this.contextoExibe['personalizado']){ botoes.push(personalizado) };
-        if(this.contextoExibe['excluir']){ botoes.push(botaoExcluir) };
-        if(this.contextoExibe['editar']){ botoes.push(botaoEditar) };
-        botoes.push({
+        let botaoCancelar = {
             text: 'Cancelar',
             role: 'cancel',
             icon: 'close',
+            cssClass: "cancelToast",
             handler: () => {}
-        })
+        }
+        if(this.contextoExibe['editar']){ botoes.push(botaoEditar) };
+        for(let personalizado of this.contextoExibe['personalizado']){ botoes.push(personalizado) };
+        if(this.contextoExibe['excluir']){ botoes.push(botaoExcluir) };
+        botoes.push(botaoCancelar)
         let actionSheet = this.actionSheetCtrl.create({
             title: 'Escolha uma das opções abaixo:',
             buttons: botoes

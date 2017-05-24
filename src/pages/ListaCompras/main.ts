@@ -36,11 +36,27 @@ export class PageListaCompras extends PageLista<Planejamento> {
         this.contextoExibe['personalizado'].push({
             text: 'Gerenciar itens de compra',
             role: 'manage',
-            icon: 'settings',
+            icon: 'list',
             handler: () => {
                 this.navCtrl.push(PageListaItensCompra,{
                     'sujeito': this.getClicado()
                 })
+            }
+        })
+        this.contextoExibe['personalizado'].push({
+            text: 'Anotar preços',
+            role: 'manage',
+            icon: 'cash',
+            handler: () => {
+                this.navCtrl.setRoot(PageListaCompras)
+            }
+        })
+        this.contextoExibe['personalizado'].push({
+            text: 'Ir às compras',
+            role: 'manage',
+            icon: 'cart',
+            handler: () => {
+                this.navCtrl.setRoot(PageListaCompras)
             }
         })
     }
