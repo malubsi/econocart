@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="logotipoCesta">
+        <ion-title>
+            Ir às compras
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list class="noHSpace">
+        <ion-list ion-item class="noHSpace">
+            <ion-item class="fundoEspecial">
+                ...no menor preço...
+            </ion-item>
+            <ion-list ion-item>
+                <button ion-item (click)="menorPrecoTodos()">
+                    ...visitando todos os supermercados
+                </button>
+                <button ion-item (click)="menorPrecoUm()">
+                    ...visitando um único supermercado
+                </button>
+                <button ion-item (click)="menorPrecoMedio()">
+                    ...médio
+                </button>
+            </ion-list>
+        </ion-list>
+    </ion-list>
+</ion-content>

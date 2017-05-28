@@ -1,0 +1,42 @@
+page-lista {
+    .text-end{
+        display: relative;
+        float: right;
+    }
+    .text-muted{
+        opacity: 0.5;
+    }
+    .collapsible button:first-of-type ion-icon:first-of-type{
+        transition: transform 200ms ease-in-out;
+    }
+    .collapsible:not(.collapsed) button:first-of-type ion-icon:first-of-type{
+        transform: rotate(90deg);
+    }
+    .collapsible>ion-list{
+        transition: all 300ms ease-in-out;
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    .collapsible.collapsed>ion-list{
+        transform: scaleY(0);
+        opacity: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .collapsible>ion-list ion-item{
+        transition: all 300ms ease-in-out;
+        max-height: 4.4rem;
+    }
+    .collapsible.collapsed>ion-list ion-item{
+        max-height: 0rem;
+        min-height: 0rem;
+    }
+}
+.deleteToast{
+    color: #cc3333 !important;
+}
+.cancelToast{
+    color: #387ef5 !important;
+}

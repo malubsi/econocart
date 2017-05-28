@@ -21,6 +21,10 @@ import { PageListaCompras } from '../pages/ListaCompras/main';
 import { PageFormCompras } from '../pages/FormCompras/main';
 import { PageListaItensCompra } from '../pages/ListaItensCompra/main';
 import { PageFormItensCompra } from '../pages/FormItensCompra/main';
+import { PageListaPrecos } from '../pages/ListaPrecos/main';
+import { PageFormPrecos } from '../pages/FormPrecos/main';
+import { PageRelatorioEscolhe } from '../pages/RelatorioEscolhe/main';
+import { PageRelatorioExibe } from '../pages/RelatorioExibe/main';
 
 import { OrmDatabase } from '../persistence/OrmDatabase.service';
 import { Relatorios } from '../providers/Relatorios.service';
@@ -45,6 +49,10 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         PageFormCompras,
         PageListaItensCompra,
         PageFormItensCompra,
+        PageListaPrecos,
+        PageFormPrecos,
+        PageRelatorioEscolhe,
+        PageRelatorioExibe,
     ],
     imports: [
         BrowserModule,
@@ -67,6 +75,10 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         PageFormCompras,
         PageListaItensCompra,
         PageFormItensCompra,
+        PageListaPrecos,
+        PageFormPrecos,
+        PageRelatorioEscolhe,
+        PageRelatorioExibe,
     ],
     providers: [
         StatusBar,
@@ -82,6 +94,7 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         CrudNecessidade,
         CrudPlanejamento,
         CrudSupermercado,
+        PageRelatorioExibe,
     ]
 })
 export class AppModule { }

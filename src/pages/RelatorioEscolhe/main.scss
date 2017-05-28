@@ -1,0 +1,17 @@
+page-inicio {
+    .fundoEspecial{
+        background: color($colors, logotipoFundo, secondary);
+        background: linear-gradient(to right, color($colors, logotipoFundo, secondary), $background-color);
+        border-width: 1pt;
+        border-style: solid;
+        border-image: linear-gradient(to right, color($colors, logotipoFundoEscuroEscuro, secondary), $background-color) 100% 1;
+        border-left-style: none;
+        border-right-style: none;
+    }
+    .noHSpace{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+}

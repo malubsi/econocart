@@ -10,6 +10,8 @@ import { CrudSupermercado } from '../../providers/CrudSupermercado.service';
 import { PageLista } from '../generico_lista/main';
 import { PageFormCompras } from '../FormCompras/main';
 import { PageListaItensCompra } from '../ListaItensCompra/main';
+import { PageListaPrecos } from '../ListaPrecos/main';
+import { PageRelatorioEscolhe } from '../RelatorioEscolhe/main';
 
 @Component({
     selector: 'page-lista',
@@ -48,7 +50,9 @@ export class PageListaCompras extends PageLista<Planejamento> {
             role: 'manage',
             icon: 'cash',
             handler: () => {
-                this.navCtrl.setRoot(PageListaCompras)
+                this.navCtrl.push(PageListaPrecos,{
+                    'sujeito': this.getClicado()
+                })
             }
         })
         this.contextoExibe['personalizado'].push({
@@ -56,7 +60,9 @@ export class PageListaCompras extends PageLista<Planejamento> {
             role: 'manage',
             icon: 'cart',
             handler: () => {
-                this.navCtrl.setRoot(PageListaCompras)
+                this.navCtrl.push(PageRelatorioEscolhe,{
+                    'sujeito': this.getClicado()
+                })
             }
         })
     }
