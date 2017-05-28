@@ -26,6 +26,7 @@ import { CrudNecessidade } from './providers/CrudNecessidade.service';
 import { CrudPlanejamento } from './providers/CrudPlanejamento.service';
 import { CrudSupermercado } from './providers/CrudSupermercado.service';
 import { OrmDatabase } from './persistence/OrmDatabase.service'
+import { Relatorios } from './providers/Relatorios.service';
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -90,6 +91,7 @@ export class TestUtils {
                 CrudNecessidade,
                 CrudPlanejamento,
                 CrudSupermercado,
+                Relatorios,
             ],
             imports: [
                 FormsModule,

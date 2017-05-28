@@ -39,6 +39,7 @@ export abstract class PageLista<T> {
     public abstract posTexto(item: T):string;
     public abstract abreEdicao(item: T):void;
     public abstract ordenaExibicao(items: T[]):T[];
+    public classesPara(item: T):string{return ''}
     public add():void{
         this.abreEdicao(this.crud.criar());
     };
@@ -105,6 +106,9 @@ export abstract class PageLista<T> {
         if(this.contextoExibe['editar']){ botoes.push(botaoEditar) };
         for(let personalizado of this.contextoExibe['personalizado']){ botoes.push(personalizado) };
         if(this.contextoExibe['excluir']){ botoes.push(botaoExcluir) };
+        if(botoes.length == 0){
+            return
+        }
         botoes.push(botaoCancelar)
         let actionSheet = this.actionSheetCtrl.create({
             title: 'Escolha uma das opções abaixo:',

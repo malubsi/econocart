@@ -6,10 +6,11 @@ page-lista {
     .text-muted{
         opacity: 0.5;
     }
-}
-.deleteToast{
-    color: #cc3333 !important;
-}
-.cancelToast{
-    color: #387ef5 !important;
+    .text-main{
+        transition: all 200ms ease-in-out;
+    }
+    .tickado{
+        text-decoration: line-through;
+        opacity: 0.5;
+    }
 }

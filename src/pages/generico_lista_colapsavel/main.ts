@@ -77,30 +77,14 @@ export abstract class PageListacolapsavel<E,I>{
     public items: Array<E>;
     public initialLoad: Loading;
     public abstract textos: object;
-    // public abstract iconeE: string;
     public abstract iconeI: string;
     public abstract itemField: string;
     public abstract textoExterno(item: E):string;
     public abstract textoInterno(item: I):string;
     public abstract posTextoExterno(item: E):string;
     public abstract posTextoInterno(item: I):string;
-    // public abstract abreEdicaoExterno(item: E):void;
-    // public abstract abreEdicaoInterno(item: I):void;
     public abstract ordenaExibicaoExterno(items: E[]):E[];
     public abstract ordenaExibicaoInterno(items: I[]):I[];
-    // public addE():void{
-    //     this.abreEdicaoExterno(this.crudExterno.criar());
-    // };
-    // public addI():void{
-    //     this.abreEdicaoInterno(this.crudInterno.criar());
-    // };
-    // public getClicadoExterno():E{
-    //     return this.clicadoExterno;
-    // }
-    // public clicadoExterno: E;
-    // public clickExterno(item: E):void{
-    //     return;
-    // };
     public collapsed: number[] = [];
     public collapse(item: E):void{
         if(this.isCollapsed(item)){
@@ -112,10 +96,6 @@ export abstract class PageListacolapsavel<E,I>{
     public isCollapsed(item: E):boolean{
         return this.collapsed.indexOf(item['id']) != -1
     }
-    // public getClicadoInterno():I{
-    //     return this.clicadoInterno;
-    // }
-    // public clicadoInterno: I;
     public abstract clickInterno(item: I):void;
     public getSubitems(item: E):I[]{
         return item[this.itemField]

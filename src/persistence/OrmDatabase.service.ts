@@ -79,4 +79,13 @@ export class OrmDatabase{
             }
         })
     }
+    dropDatabase(){
+        return new Promise<void>((resolve, reject) => {
+            this.getConnection().then(connection =>{
+                connection.dropDatabase().then(()=>{
+                    connection.close().then(resolve,reject)
+                }, reject)
+            },reject)
+        })
+    }
 }
