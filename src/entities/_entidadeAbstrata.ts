@@ -1,1 +1,3 @@
-export abstract class EntidadeAbstrata {}
+export abstract class EntidadeAbstrata {
+    abstract id: number;
+}

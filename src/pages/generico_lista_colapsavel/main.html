@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar color="logotipoCesta">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ textos.titulo }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngFor="let item of items" class="collapsible {{ isCollapsed(item)?'':'collapsed' }}">
+        <button ion-item (click)="collapse(item)">
+            <ion-icon name="arrow-dropright-circle"></ion-icon>
+            <span class="text-end text-muted">
+                {{ posTextoExterno(item) }}
+            </span>
+            &nbsp;
+            {{ textoExterno(item) }}
+        </button>
+        <ion-list ion-item *ngIf="item[itemField].length">
+            <ion-item *ngFor="let subitem of item[itemField]" (click)="clickInterno(subitem)">
+                <ion-icon *ngIf="iconeI" name="{{ iconeI }}"></ion-icon>
+                <span class="text-end text-muted">
+                    {{ posTextoInterno(subitem) }}
+                </span>
+                &nbsp;
+                <span>
+                    {{ textoInterno(subitem) }}
+                </span>
+            </ion-item>
+        </ion-list>
+    </ion-list>
+</ion-content>
