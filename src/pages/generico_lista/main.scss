@@ -1,19 +1,25 @@
 page-lista {
-  .text-end {
-    display: relative;
-    float: right;
-  }
-  .text-muted {
-    opacity: 0.5;
-  }
-  .text-main {
-    transition: all 200ms ease-in-out;
-  }
-  .tickado {
-    text-decoration: line-through;
-    opacity: 0.5;
-  }
-  .invisivel {
-    opacity: 0 !important;
-  }
+    .text-end {
+        display: relative;
+        float: right;
+    }
+    .text-muted {
+        opacity: 0.5;
+    }
+    .text-main {
+        transition: all 200ms ease-in-out;
+    }
+    .tickado {
+        text-decoration: line-through;
+        opacity: 0.5;
+    }
+    .invisivel {
+        opacity: 0 !important;
+    }
+    .scroll-content {
+        background-color: map-get($colors, light);
+    }
+    ion-card-header {
+        font-weight: bold;
+    }
 }

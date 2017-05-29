@@ -1,21 +1,29 @@
 '
 <ion-header>
-  <ion-navbar color="logotipoCesta">
-    <button ion-button menuToggle>
+    <ion-navbar color="logotipoCesta">
+        <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>{{ textos.titulo }}</ion-title>
-  </ion-navbar>
+        <ion-title>{{ textos.titulo }}</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngIf="textos.adicionar" (click)="add()">
+    <ion-card *ngIf="hasChart">
+        <ion-card-header>
+            {{ textos.tituloGrafico }}
+        </ion-card-header>
+        <ion-card-content>
+            <canvas #chartCanvas></canvas>
+        </ion-card-content>
+    </ion-card>
+    <ion-list>
+        <button ion-item *ngIf="textos.adicionar" (click)="add()">
             <ion-icon name="add"></ion-icon>
             &nbsp;
             {{ textos.adicionar }}
-</button>
-    <button ion-item *ngFor="let item of items" (click)="click(item)">
+        </button>
+        <button ion-item *ngFor="let item of items" (click)="click(item)">
             <ion-icon *ngIf="icone" name="{{ icone }}"></ion-icon>
             <span class="text-end text-muted">
                 {{ posTexto(item) }}
@@ -25,15 +33,12 @@
                 {{ texto(item) }}
             </span>
         </button>
-    <button class="invisivel" *ngIf="isChoice" ion-fab></button>
-  </ion-list>
-
-
-  <ion-fab *ngIf="isChoice" bottom right #fab>
-    <button color="logotipoCesta" ion-fab><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab *ngFor="let item of socialMedia" (click)="share(textos.titulo,item)"><ion-icon name="{{item}}"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
-
+        <button class="invisivel" *ngIf="isChoice" ion-fab></button>
+    </ion-list>
+    <ion-fab *ngIf="isChoice" bottom right #fab>
+        <button color="logotipoCesta" ion-fab><ion-icon name="share"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab *ngFor="let item of socialMedia" (click)="share(textos.titulo,item)"><ion-icon name="{{item}}"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>

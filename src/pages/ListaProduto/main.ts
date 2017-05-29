@@ -9,6 +9,7 @@ import { CrudProduto } from '../../providers/CrudProduto.service';
 import { CrudUnidadeMedida } from '../../providers/CrudUnidadeMedida.service';
 import { PageLista } from '../generico_lista/main';
 import { PageFormProduto } from '../FormProduto/main';
+import { PageRelatorioHistoricoPrecos } from '../RelatorioHistoricoPrecos/main';
 
 @Component({
     selector: 'page-lista',
@@ -32,6 +33,16 @@ export class PageListaProduto extends PageLista<Produto> {
             loadingCtrl,
             produtoCrud
         );
+        this.contextoExibe['personalizado'].push({
+            text: 'Histórico de preços',
+            role: 'manage',
+            icon: 'analytics',
+            handler: () => {
+                this.navCtrl.push(PageRelatorioHistoricoPrecos,{
+                    'sujeito': this.getClicado()
+                })
+            }
+        })
     }
     public items: Produto[] = new Array();
     public icone: string = "pricetag";
