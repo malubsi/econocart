@@ -30,12 +30,14 @@ export abstract class PageLista<T> {
         personalizado: [],
     };
     ionViewWillEnter() {
+        if (this.isChoice)
+            this.socialMedia = this.socialSharingService.socialMedia();
         this.refreshList();
     }
     refreshList() {
         this.mostraCarregando(); this.crud.listar().then(lista => {
-            this.items = this.ordenaExibicao(lista); if (this.isChoice) {
-            } this.escondeCarregando()
+            this.items = this.ordenaExibicao(lista);
+            this.escondeCarregando()
         });
     }
     public socialMedia: String[];
@@ -56,8 +58,16 @@ export abstract class PageLista<T> {
         return this.clicado;
     }
     public clicado: T;
-    public share(body: string) {
-        this.socialSharingService.share(body);
+    public share(body: string, media: string) {
+        this.socialSharingService.share(body, media).then((resolve) => {
+        }).catch((reject) => {
+            let alert = this.alert.create({
+                title: 'Ops..',
+                subTitle: 'Você não tem  o ' + media.replace('logo-','') + ' instalado, por favor instale para poder avisar seus amigos sobre sua economica.',
+                buttons: ['Ok']
+            });
+            alert.present();
+        });
     }
 
     public click(item: T): void {
