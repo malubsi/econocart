@@ -44,8 +44,9 @@ export class PageRelatorioHistoricoPrecos extends PageLista<Consulta> {
         this.contextoExibe['excluir'] = false
         this.contextoExibe['editar'] = false
         this.hasChart = true
-        this.textos['titulo']+= this.produto.nome;
-        this.textos['tituloGrafico']+= this.produto.nome;
+        this.textos['titulo']+= this.produto.nome
+        this.textos['tituloGrafico']+= this.produto.nome
+        this.posTextoPequeno = true
     }
     refreshList() {
         this.mostraCarregando();

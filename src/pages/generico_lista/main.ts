@@ -48,6 +48,7 @@ export abstract class PageLista<T> {
     public socialMedia: String[];
     public hasChart: boolean = false;
     public isChoice: boolean = false;
+    public posTextoPequeno: boolean = false;
     public initialLoad: Loading;
     public abstract textos: object;
     public abstract icone: string;
