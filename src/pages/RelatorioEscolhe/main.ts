@@ -38,7 +38,7 @@ export class PageRelatorioEscolhe {
         ).then(
             (consultas:Consulta[]) => {
                 this.navCtrl.push(PageRelatorioExibe,{
-                    titulo: 'O mais barato',
+                    titulo: 'A lista mais barata',
                     consultas: consultas,
                 })
             }
