@@ -25,6 +25,7 @@ import { PageListaPrecos } from '../pages/ListaPrecos/main';
 import { PageFormPrecos } from '../pages/FormPrecos/main';
 import { PageRelatorioEscolhe } from '../pages/RelatorioEscolhe/main';
 import { PageRelatorioExibe } from '../pages/RelatorioExibe/main';
+import { PageRelatorioHistoricoPrecos } from '../pages/RelatorioHistoricoPrecos/main';
 
 import { OrmDatabase } from '../persistence/OrmDatabase.service';
 import { Relatorios } from '../providers/Relatorios.service';
@@ -55,6 +56,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         PageFormPrecos,
         PageRelatorioEscolhe,
         PageRelatorioExibe,
+        PageRelatorioHistoricoPrecos,
     ],
     imports: [
         BrowserModule,
@@ -81,6 +83,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         PageFormPrecos,
         PageRelatorioEscolhe,
         PageRelatorioExibe,
+        PageRelatorioHistoricoPrecos,
     ],
     providers: [
         StatusBar,

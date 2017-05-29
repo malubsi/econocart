@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -8,6 +9,8 @@ import { CrudService } from '../../providers/_crudService';
 import { SocialSharingService } from "../../providers/SocialSharing.service";
 
 export abstract class PageLista<T> {
+    @ViewChild('chartCanvas') chartCanvas;
+    chartObject: any;
     constructor(
         public navCtrl: NavController,
         public actionSheetCtrl: ActionSheetController,
@@ -30,17 +33,20 @@ export abstract class PageLista<T> {
         personalizado: [],
     };
     ionViewWillEnter() {
-        if (this.isChoice)
+        if(this.isChoice){
             this.socialMedia = this.socialSharingService.socialMedia();
+        }
         this.refreshList();
     }
     refreshList() {
-        this.mostraCarregando(); this.crud.listar().then(lista => {
+        this.mostraCarregando();
+        this.crud.listar().then(lista => {
             this.items = this.ordenaExibicao(lista);
             this.escondeCarregando()
         });
     }
     public socialMedia: String[];
+    public hasChart: boolean = false;
     public isChoice: boolean = false;
     public initialLoad: Loading;
     public abstract textos: object;
@@ -63,7 +69,7 @@ export abstract class PageLista<T> {
         }).catch((reject) => {
             let alert = this.alert.create({
                 title: 'Ops..',
-                subTitle: 'Você não tem  o ' + media.replace('logo-','') + ' instalado, por favor instale para poder avisar seus amigos sobre sua economica.',
+                subTitle: 'Você não tem  o ' + media.replace('logo-','') + ' instalado, por favor instale para poder avisar seus amigos sobre sua economia.',
                 buttons: ['Ok']
             });
             alert.present();
@@ -88,18 +94,18 @@ export abstract class PageLista<T> {
             handler: () => {
                 self.mostraCarregando()
                 self.crud.apagar(item)
-                    .then(() => {
-                        self.escondeCarregando()
-                        this.toast.show(
-                            self.textos['capitalEntidade'] + " excluíd" + self.textos['entidadeGenero'] + " com sucesso",
-                            '1500',
-                            'center'
-                        )
-                        self.refreshList();
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
+                .then(() => {
+                    self.escondeCarregando()
+                    this.toast.show(
+                        self.textos['capitalEntidade'] + " excluíd" + self.textos['entidadeGenero'] + " com sucesso",
+                        '1500',
+                        'center'
+                    )
+                    self.refreshList();
+                })
+                .catch(error => {
+                    console.error(error);
+                })
             }
         }
         let botaoExcluir = {

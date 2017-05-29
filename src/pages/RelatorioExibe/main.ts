@@ -95,13 +95,13 @@ export class PageRelatorioExibe extends PageLista<Consulta> {
     };
     public texto(item: Consulta): string {
         return '' +
-            ((item.necessidade || { produto: null }).produto || { nome: '<deletado>' }).nome
-            + ' ('
-            + ((item.necessidade || { quantidade: '???' }).quantidade)
-            + ' '
-            + ((((item.necessidade || { produto: null }).produto || { unidadeMedida: null }).unidadeMedida || { nome: 'iten' }).nome)
-            + (((item.necessidade || { quantidade: 0 }).quantidade) > 1 ? 's' : '')
-            + ')';
+        ((item.necessidade || { produto: null }).produto || { nome: '<deletado>' }).nome
+        + ' ('
+        + ((item.necessidade || { quantidade: '???' }).quantidade)
+        + ' '
+        + ((((item.necessidade || { produto: null }).produto || { unidadeMedida: null }).unidadeMedida || { nome: 'iten' }).nome)
+        + (((item.necessidade || { quantidade: 0 }).quantidade) > 1 ? 's' : '')
+        + ')';
     };
     public posTexto(item: Consulta): string { return item.supermercado.nome; };
     public classesPara(item: Consulta): string {
@@ -116,8 +116,6 @@ export class PageRelatorioExibe extends PageLista<Consulta> {
             this.necessidadeCrud.salvar(necessidade)
         })
     };
-
-
     public ordenaExibicao(items: Consulta[]): Consulta[] {
         items.sort((a, b) => {
             if (a.supermercado.nome > b.supermercado.nome) { return 1; }
