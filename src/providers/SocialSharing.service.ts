@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Injectable()
 export class SocialSharingService {
 
-  constructor(public http: Http, public socialSharing: SocialSharing) { }
+  constructor(public socialSharing: SocialSharing) { }
 
 
   public body = 'O EconoCart me ajudou a achar substituir possível, me ajudando a economizar tempo e dinheiro, baixe você também e comece a poupar tempo e dinheiro';

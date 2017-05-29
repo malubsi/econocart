@@ -17,6 +17,7 @@ import { AlertController, ActionSheetController, GestureController } from 'ionic
 import { ToastController } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { LoadingController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock } from './mocks';
 import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
@@ -27,6 +28,8 @@ import { CrudPlanejamento } from './providers/CrudPlanejamento.service';
 import { CrudSupermercado } from './providers/CrudSupermercado.service';
 import { OrmDatabase } from './persistence/OrmDatabase.service'
 import { Relatorios } from './providers/Relatorios.service';
+import { SocialSharingService } from './providers/SocialSharing.service';
+
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -79,6 +82,7 @@ export class TestUtils {
                 GestureController,
                 Http,
                 LoadingController,
+                SocialSharing,
                 {provide: Platform, useClass: PlatformMock},
                 {provide: Config, useClass: ConfigMock},
                 {provide: NavParams, useClass: NavParamsMock},
@@ -92,6 +96,7 @@ export class TestUtils {
                 CrudPlanejamento,
                 CrudSupermercado,
                 Relatorios,
+                SocialSharingService,
             ],
             imports: [
                 FormsModule,
