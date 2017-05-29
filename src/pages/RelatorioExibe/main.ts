@@ -11,6 +11,7 @@ import { CrudProduto } from '../../providers/CrudProduto.service';
 import { CrudConsulta } from '../../providers/CrudConsulta.service';
 import { CrudNecessidade } from '../../providers/CrudNecessidade.service';
 import { PageLista } from '../generico_lista/main';
+import { SocialSharingService } from "../../providers/SocialSharing.service";
 
 @Component({
     selector: 'page-lista',
@@ -27,48 +28,51 @@ export class PageRelatorioExibe extends PageLista<Consulta> {
         public consultaCrud: CrudConsulta,
         public necessidadeCrud: CrudNecessidade,
         public produtoCrud: CrudProduto,
-    ){
+        public socialSharingService: SocialSharingService
+    ) {
         super(
             navCtrl,
             actionSheetCtrl,
             alert,
             toast,
             loadingCtrl,
-            consultaCrud
+            consultaCrud,
+            socialSharingService
         );
         this.contextoExibe['excluir'] = false
         this.contextoExibe['editar'] = false
         this.textos['titulo'] = this.navParams.get('titulo')
         this.items = this.navParams.get('consultas')
+        this.isChoice = true;
     }
-    refreshList(){
+    refreshList() {
         this.mostraCarregando();
-        this.consultaCrud.recarregarAlguns(this.items).then( consultas => {
+        this.consultaCrud.recarregarAlguns(this.items).then(consultas => {
             this.items = consultas
             let necessidades: Necessidade[] = []
-            for(let consulta of consultas){
+            for (let consulta of consultas) {
                 necessidades.push(consulta.necessidade)
             }
             this.necessidadeCrud.recarregarAlguns(necessidades).then(necessidades => {
                 this.produtoCrud.listar().then(produtos => {
-                    for(let necessidade in necessidades){
-                        for(let produto of produtos){
-                            if(
+                    for (let necessidade in necessidades) {
+                        for (let produto of produtos) {
+                            if (
                                 necessidades[necessidade].produto
                                 &&
                                 necessidades[necessidade].produto.id == produto.id
-                            ){
+                            ) {
                                 necessidades[necessidade].produto = produto
                             }
                         }
                     }
-                    for(let consulta in consultas){
-                        for(let necessidade of necessidades){
-                            if(
+                    for (let consulta in consultas) {
+                        for (let necessidade of necessidades) {
+                            if (
                                 consultas[consulta].necessidade
                                 &&
                                 consultas[consulta].necessidade.id === necessidade.id
-                            ){
+                            ) {
                                 consultas[consulta].necessidade = necessidade
                                 break
                             }
@@ -89,30 +93,32 @@ export class PageRelatorioExibe extends PageLista<Consulta> {
         "artigoentidade": "",
         "capitalEntidade": "",
     };
-    public texto(item: Consulta):string{
-        return ''+
-        ((item.necessidade || {produto:null}).produto || {nome: '<deletado>'}).nome
-        +' ('
-        +((item.necessidade || {quantidade:'???'}).quantidade)
-        +' '
-        +((((item.necessidade || {produto:null}).produto || {unidadeMedida:null}).unidadeMedida || {nome:'iten'}).nome)
-        +(((item.necessidade || {quantidade:0}).quantidade)>1 ? 's' : '')
-        +')';
+    public texto(item: Consulta): string {
+        return '' +
+            ((item.necessidade || { produto: null }).produto || { nome: '<deletado>' }).nome
+            + ' ('
+            + ((item.necessidade || { quantidade: '???' }).quantidade)
+            + ' '
+            + ((((item.necessidade || { produto: null }).produto || { unidadeMedida: null }).unidadeMedida || { nome: 'iten' }).nome)
+            + (((item.necessidade || { quantidade: 0 }).quantidade) > 1 ? 's' : '')
+            + ')';
     };
-    public posTexto(item: Consulta):string{ return item.supermercado.nome; };
-    public classesPara(item: Consulta):string{
-        return item.necessidade.satisfeita?'tickado':''
+    public posTexto(item: Consulta): string { return item.supermercado.nome; };
+    public classesPara(item: Consulta): string {
+        return item.necessidade.satisfeita ? 'tickado' : ''
     }
-    public add():void{return}
-    public abreEdicao(item: Consulta):void{return}
-    public click(item: Consulta):void{
+    public add(): void { return }
+    public abreEdicao(item: Consulta): void { return }
+    public click(item: Consulta): void {
         item.necessidade.satisfeita = !item.necessidade.satisfeita
         this.necessidadeCrud.recarregarUm(item.necessidade).then(necessidade => {
             necessidade.satisfeita = item.necessidade.satisfeita
             this.necessidadeCrud.salvar(necessidade)
         })
     };
-    public ordenaExibicao(items: Consulta[]):Consulta[]{
+
+
+    public ordenaExibicao(items: Consulta[]): Consulta[] {
         items.sort((a, b) => {
             if (a.supermercado.nome > b.supermercado.nome) { return 1; }
             if (a.supermercado.nome < b.supermercado.nome) { return -1; }

@@ -53,7 +53,7 @@ export class MyApp {
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
     }
-    btnOpenHome(){
-        this.openPage({component:PageInicio})
+    btnOpenHome() {
+        this.openPage({ component: PageInicio })
     }
 }

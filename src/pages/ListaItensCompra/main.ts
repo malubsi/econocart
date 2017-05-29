@@ -13,6 +13,7 @@ import { CrudProduto } from '../../providers/CrudProduto.service';
 import { PageLista } from '../generico_lista/main';
 import { PageFormItensCompra } from '../FormItensCompra/main';
 
+
 @Component({
     selector: 'page-lista',
     templateUrl: '../generico_lista/main.html'
@@ -27,32 +28,33 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
         public necessidadeCrud: CrudNecessidade,
         public navParams: NavParams,
         public produtoCrud: CrudProduto,
-        public planejamentoCrud: CrudPlanejamento,
-    ){
+        public planejamentoCrud: CrudPlanejamento, 
+  
+    ) {
         super(
             navCtrl,
             actionSheetCtrl,
             alert,
             toast,
             loadingCtrl,
-            necessidadeCrud,
+            necessidadeCrud
         );
         this.subject = navParams.get('sujeito')
     }
     public subject: Planejamento;
-    refreshList(){
+    refreshList() {
         this.mostraCarregando();
-        this.planejamentoCrud.recarregarUm(this.subject).then( planejamento => {
+        this.planejamentoCrud.recarregarUm(this.subject).then(planejamento => {
             this.subject = planejamento
             this.necessidadeCrud.recarregarAlguns(planejamento.necessidades).then(necessidades => {
                 this.produtoCrud.listar().then(produtos => {
-                    for(let necessidade in necessidades){
-                        for(let produto of produtos){
-                            if(
+                    for (let necessidade in necessidades) {
+                        for (let produto of produtos) {
+                            if (
                                 necessidades[necessidade].produto
                                 &&
                                 necessidades[necessidade].produto.id == produto.id
-                            ){
+                            ) {
                                 necessidades[necessidade].produto = produto
                             }
                         }
@@ -72,21 +74,21 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
         "artigoentidade": "o item de compra",
         "capitalEntidade": "Item de compra",
     };
-    public texto(item: Necessidade):string{ return (item.produto || {nome:'<deletado>'}).nome; };
-    public posTexto(item: Necessidade):string{
-        return ((item.quantidade || '?')+" "+
-        (((item.produto || {unidadeMedida:null}).unidadeMedida || {nome:'iten'}).nome)
-        +(item.quantidade>1 ? 's' : ''))
+    public texto(item: Necessidade): string { return (item.produto || { nome: '<deletado>' }).nome; };
+    public posTexto(item: Necessidade): string {
+        return ((item.quantidade || '?') + " " +
+            (((item.produto || { unidadeMedida: null }).unidadeMedida || { nome: 'iten' }).nome)
+            + (item.quantidade > 1 ? 's' : ''))
     };
-    public add():void{
+    public add(): void {
         let novo = this.crud.criar()
         novo.planejamento = this.subject
         this.abreEdicao(novo);
     };
-    public abreEdicao(item: Necessidade):void{
+    public abreEdicao(item: Necessidade): void {
         this.produtoCrud.listar().then(
             produto => {
-                this.navCtrl.push(PageFormItensCompra,{
+                this.navCtrl.push(PageFormItensCompra, {
                     sujeito: item,
                     crud: this.necessidadeCrud,
                     selecionaveis: {
@@ -96,10 +98,10 @@ export class PageListaItensCompra extends PageLista<Necessidade> {
             }
         )
     };
-    public ordenaExibicao(items: Necessidade[]):Necessidade[]{
+    public ordenaExibicao(items: Necessidade[]): Necessidade[] {
         items.sort((a, b) => {
-            if ((a.produto || {nome:'<deletado>'}).nome > (b.produto || {nome:'<deletado>'}).nome) { return 1; }
-            if ((a.produto || {nome:'<deletado>'}).nome < (b.produto || {nome:'<deletado>'}).nome) { return -1; }
+            if ((a.produto || { nome: '<deletado>' }).nome > (b.produto || { nome: '<deletado>' }).nome) { return 1; }
+            if ((a.produto || { nome: '<deletado>' }).nome < (b.produto || { nome: '<deletado>' }).nome) { return -1; }
             if (a.quantidade > b.quantidade) { return 1; }
             if (a.quantidade < b.quantidade) { return -1; }
             return 0;
