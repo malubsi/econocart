@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { Loading } from 'ionic-angular';
 import { Toast } from "@ionic-native/toast";
 import { CrudService } from '../../providers/_crudService';
+import { SocialSharingService } from "../../providers/SocialSharing.service";
 
 export abstract class PageLista<T> {
     constructor(
@@ -13,13 +14,14 @@ export abstract class PageLista<T> {
         public alert: AlertController,
         public toast: Toast,
         public loadingCtrl: LoadingController,
-        public crud: CrudService<T>
-    ){
+        public crud: CrudService<T>,
+        public socialSharingService?: SocialSharingService
+    ) {
     }
-    public mostraCarregando(){
+    public mostraCarregando() {
         this.initialLoad = this.loadingCtrl.create({ content: 'Carregando...' }); this.initialLoad.present();
     }
-    public escondeCarregando(){
+    public escondeCarregando() {
         this.initialLoad.dismiss()
     }
     public contextoExibe: object = {
@@ -27,27 +29,48 @@ export abstract class PageLista<T> {
         editar: true,
         personalizado: [],
     };
-    ionViewWillEnter(){
+    ionViewWillEnter() {
+        if (this.isChoice)
+            this.socialMedia = this.socialSharingService.socialMedia();
         this.refreshList();
     }
-    refreshList(){ this.mostraCarregando(); this.crud.listar().then(lista => { this.items = this.ordenaExibicao(lista); this.escondeCarregando() }); }
+    refreshList() {
+        this.mostraCarregando(); this.crud.listar().then(lista => {
+            this.items = this.ordenaExibicao(lista);
+            this.escondeCarregando()
+        });
+    }
+    public socialMedia: String[];
+    public isChoice: boolean = false;
     public initialLoad: Loading;
     public abstract textos: object;
     public abstract icone: string;
     public abstract items: Array<T>;
-    public abstract texto(item: T):string;
-    public abstract posTexto(item: T):string;
-    public abstract abreEdicao(item: T):void;
-    public abstract ordenaExibicao(items: T[]):T[];
-    public classesPara(item: T):string{return ''}
-    public add():void{
+    public abstract texto(item: T): string;
+    public abstract posTexto(item: T): string;
+    public abstract abreEdicao(item: T): void;
+    public abstract ordenaExibicao(items: T[]): T[];
+    public classesPara(item: T): string { return '' }
+    public add(): void {
         this.abreEdicao(this.crud.criar());
     };
-    public getClicado():T{
+    public getClicado(): T {
         return this.clicado;
     }
     public clicado: T;
-    public click(item: T):void{
+    public share(body: string, media: string) {
+        this.socialSharingService.share(body, media).then((resolve) => {
+        }).catch((reject) => {
+            let alert = this.alert.create({
+                title: 'Ops..',
+                subTitle: 'Você não tem  o ' + media.replace('logo-','') + ' instalado, por favor instale para poder avisar seus amigos sobre sua economica.',
+                buttons: ['Ok']
+            });
+            alert.present();
+        });
+    }
+
+    public click(item: T): void {
         this.clicado = item;
         let self = this;
         let botoes = new Array<any>();
@@ -65,18 +88,18 @@ export abstract class PageLista<T> {
             handler: () => {
                 self.mostraCarregando()
                 self.crud.apagar(item)
-                .then(() => {
-                    self.escondeCarregando()
-                    this.toast.show(
-                        self.textos['capitalEntidade']+" excluíd"+self.textos['entidadeGenero']+" com sucesso",
-                        '1500',
-                        'center'
-                    )
-                    self.refreshList();
-                })
-                .catch(error => {
-                    console.error(error);
-                })
+                    .then(() => {
+                        self.escondeCarregando()
+                        this.toast.show(
+                            self.textos['capitalEntidade'] + " excluíd" + self.textos['entidadeGenero'] + " com sucesso",
+                            '1500',
+                            'center'
+                        )
+                        self.refreshList();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
             }
         }
         let botaoExcluir = {
@@ -87,7 +110,7 @@ export abstract class PageLista<T> {
             handler: () => {
                 let confirm = this.alert.create({
                     title: "Excluir",
-                    subTitle: "Gostaria de realmente excluir "+self.textos['artigoentidade']+" " + self.texto(item) + "?",
+                    subTitle: "Gostaria de realmente excluir " + self.textos['artigoentidade'] + " " + self.texto(item) + "?",
                     buttons: [
                         botaoConfirmaExclusao,
                         botaoCancelaExclusao
@@ -101,12 +124,12 @@ export abstract class PageLista<T> {
             role: 'cancel',
             icon: 'close',
             cssClass: "cancelToast",
-            handler: () => {}
+            handler: () => { }
         }
-        if(this.contextoExibe['editar']){ botoes.push(botaoEditar) };
-        for(let personalizado of this.contextoExibe['personalizado']){ botoes.push(personalizado) };
-        if(this.contextoExibe['excluir']){ botoes.push(botaoExcluir) };
-        if(botoes.length == 0){
+        if (this.contextoExibe['editar']) { botoes.push(botaoEditar) };
+        for (let personalizado of this.contextoExibe['personalizado']) { botoes.push(personalizado) };
+        if (this.contextoExibe['excluir']) { botoes.push(botaoExcluir) };
+        if (botoes.length == 0) {
             return
         }
         botoes.push(botaoCancelar)

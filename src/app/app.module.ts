@@ -34,6 +34,8 @@ import { CrudConsulta } from '../providers/CrudConsulta.service';
 import { CrudNecessidade } from '../providers/CrudNecessidade.service';
 import { CrudPlanejamento } from '../providers/CrudPlanejamento.service';
 import { CrudSupermercado } from '../providers/CrudSupermercado.service';
+import { SocialSharingService } from "../providers/SocialSharing.service";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
     declarations: [
@@ -95,6 +97,8 @@ import { CrudSupermercado } from '../providers/CrudSupermercado.service';
         CrudPlanejamento,
         CrudSupermercado,
         PageRelatorioExibe,
+        SocialSharingService,
+        SocialSharing
     ]
 })
 export class AppModule { }
