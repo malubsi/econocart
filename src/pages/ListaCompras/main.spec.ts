@@ -19,4 +19,17 @@ describe('Pages: Listas: Compras', () => {
     it('should create the page', async(() => {
         expect(instance).toBeTruthy();
     }));
+
+    it('should add an item', async(() => {
+        expect(fixture.componentInstance.add()).toBeUndefined();
+    }));
+
+    it('should sort its contents',async(() => {
+        expect(instance.ordenaExibicao([])).toEqual([]);
+    }));
+
+    it('should display labels for its items', async(() => {
+        expect(instance.texto({nome:'asd'})).toBe('asd');
+        expect(instance.posTexto({necessidades: ['a','b']})).toBe('2 itens');
+    }));
 });

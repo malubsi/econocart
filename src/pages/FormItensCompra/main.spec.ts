@@ -19,4 +19,11 @@ describe('Pages: Forms: Item de compra', () => {
     it('should create the page', async(() => {
         expect(instance).toBeTruthy();
     }));
+
+    it('should display a text option', async(() => {
+        expect(instance.textOption('unmapped','')).toBe('');
+        expect(instance.textOption('unmapped',null)).toBe('');
+        expect(instance.textOption(null,null)).toBe('');
+        expect(instance.textOption('produto',{nome:'asd'})).toBe('asd');
+    }));
 });

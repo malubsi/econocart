@@ -19,7 +19,7 @@ import { Toast } from "@ionic-native/toast";
 import { LoadingController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
-import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock } from './mocks';
+import { ConfigMock, PlatformMock, NavParamsMock, NavMock, AlertMock, ActionSheetControllerMock } from './mocks';
 import { CrudUnidadeMedida } from './providers/CrudUnidadeMedida.service'
 import { CrudProduto } from './providers/CrudProduto.service'
 import { CrudConsulta } from './providers/CrudConsulta.service';
@@ -76,18 +76,18 @@ export class TestUtils {
                 Keyboard,
                 DomController,
                 MenuController,
-                ActionSheetController,
                 Toast,
                 ToastController,
                 GestureController,
                 Http,
-                LoadingController,
                 SocialSharing,
                 {provide: Platform, useClass: PlatformMock},
                 {provide: Config, useClass: ConfigMock},
                 {provide: NavParams, useClass: NavParamsMock},
                 {provide: NavController, useClass: NavMock},
                 {provide: AlertController, useClass: AlertMock},
+                {provide: ActionSheetController, useClass: ActionSheetControllerMock},
+                {provide: LoadingController, useClass: ActionSheetControllerMock},
                 OrmDatabase,
                 CrudUnidadeMedida,
                 CrudProduto,

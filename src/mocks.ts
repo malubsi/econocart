@@ -317,5 +317,10 @@ export class daomock{
     };
 }
 
+export class ActionSheetControllerMock {
+    create(s:any){
+        return {present: ()=>true, dismiss: ()=>true}
+    }
+}
 
 /* tslint:enable */
