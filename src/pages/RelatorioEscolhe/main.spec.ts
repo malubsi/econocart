@@ -1,6 +1,7 @@
 import { ComponentFixture, async } from '@angular/core/testing';
 import { TestUtils } from '../../test';
 import { PageRelatorioEscolhe } from './main';
+import { Planejamento } from '../../entities/Planejamento';
 
 let fixture: ComponentFixture<PageRelatorioEscolhe> = null;
 let instance: any = null;
@@ -20,5 +21,16 @@ describe('Pages: Relatorio: Escolhe', () => {
     it('should create the start page', async(() => {
         expect(instance).toBeTruthy();
     }));
-    
+
+    it('should open other pages: menorPrecoMedio', async(() => {
+        expect(instance.menorPrecoMedio).toThrow(new TypeError('Cannot read property \'relatorioService\' of undefined'));
+    }));
+
+    it('should open other pages: menorPrecoUm', async(() => {
+        expect(instance.menorPrecoUm).toThrow(new TypeError('Cannot read property \'relatorioService\' of undefined'));
+    }));
+
+    it('should open other pages: menorPrecoTodos', async(() => {
+        expect(instance.menorPrecoTodos).toThrow(new TypeError('Cannot read property \'relatorioService\' of undefined'));
+    }));
 });
