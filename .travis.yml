@@ -1,5 +1,6 @@
 dist: trusty
 sudo: required
+group: edge
 
 language: node_js
 node_js:
@@ -39,7 +40,7 @@ script:
 
 after_success:
   - ./node_modules/.bin/codecov -t $CODECOV_TOKEN
-  - sonar-scanner-2.6-SNAPSHOT/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br -Dsonar.token=$OWNSONAR_TOKEN 
+  - sonar-scanner-2.6-SNAPSHOT/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.adlerneves.com.br -Dsonar.token=$OWNSONAR_TOKEN
 
 cache:
   directories:
