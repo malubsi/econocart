@@ -24,6 +24,7 @@
     <preference name="SplashScreenDelay" value="60000" />
     <preference name="loadUrlTimeoutValue" value="59000" />
     <platform name="android">
+        <preference name="xwalkMultipleApk" value="false"/>
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -97,5 +98,6 @@
         <variable name="XWALK_COMMANDLINE" value="--disable-pull-to-refresh-effect" />
         <variable name="XWALK_MODE" value="embedded" />
         <variable name="XWALK_MULTIPLEAPK" value="false" />
+        <variable name="xwalkMultipleApk" value="false" />
     </plugin>
 </widget>

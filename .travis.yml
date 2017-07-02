@@ -34,7 +34,7 @@ before_script:
   - ionic cordova platform add browser
 
 script:
-  - ionic cordova build browser --prod
+  - ionic cordova build browser
   - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
 
