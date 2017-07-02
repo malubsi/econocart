@@ -9,12 +9,26 @@ declare var describe: any;
 declare var it: any;
 declare var expect: any;
 declare var beforeEach: any;
+declare var afterEach: any;
 
 describe('Pages: Listas: UnidadeMedida', () => {
     beforeEach(async(() => TestUtils.beforeEachCompiler([PageListaUnidadeMedida]).then(compiled => {
         fixture = compiled.fixture;
         instance = compiled.instance;
+        instance.crud.salvar({
+            id:1,
+            nome:'quilo',
+            produtos:[],
+        });
     })));
+
+    afterEach(async(() => {
+        instance.crud.obterIds([1]).then((dados)=>{
+            for(let dado of dados){
+                instance.crud.apagar(dado);
+            }
+        })
+    }));
 
     it('should create the page', async(() => {
         expect(instance).toBeTruthy();

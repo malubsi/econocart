@@ -25,4 +25,8 @@ describe('Pages: Forms: Supermercado', () => {
         expect(instance.textOption('unmapped',null)).toBe('');
         expect(instance.textOption(null,null)).toBe('');
     }));
+
+    it('should save', async(() => {
+        expect(()=>{instance.save()}).toThrow(new TypeError("Cannot read property 'hasOwnProperty' of undefined"));
+    }));
 });
