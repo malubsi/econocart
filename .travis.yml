@@ -30,10 +30,10 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - npm install @ionic/cli-plugin-ionic-angular @ionic/cli-plugin-cordova
-  - ionic cordova platform add browser
+# - ionic cordova platform add browser
 
 script:
-  - ionic cordova build browser
+# - ionic cordova build browser
   - ng test --watch=false --code-coverage
   - sh -e /etc/init.d/xvfb stop
 
