@@ -9,15 +9,36 @@ declare var describe: any;
 declare var it: any;
 declare var expect: any;
 declare var beforeEach: any;
+declare var afterEach: any;
 
 describe('Pages: Listas: Compras', () => {
     beforeEach(async(() => TestUtils.beforeEachCompiler([PageListaCompras]).then(compiled => {
         fixture = compiled.fixture;
         instance = compiled.instance;
+        instance.crud.salvar({
+            id: 1,
+            nome: "feira da fruta",
+            criacao: new Date(),
+            modificacao: new Date(),
+            necessidades: [],
+            supermercados: [],
+        });
     })));
+
+    afterEach(async(() => {
+        instance.crud.obterIds([1]).then((dados)=>{
+            for(let dado of dados){
+                instance.crud.apagar(dado);
+            }
+        })
+    }));
 
     it('should create the page', async(() => {
         expect(instance).toBeTruthy();
+    }));
+
+    it('should enter the view',async(() => {
+        expect((()=>{instance.ionViewWillEnter();instance.escondeCarregando()})()).toBeUndefined();
     }));
 
     it('should add an item', async(() => {

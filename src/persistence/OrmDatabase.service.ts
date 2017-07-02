@@ -44,9 +44,7 @@ export class OrmDatabase{
                         logOnlyFailedQueries: true
                     },
                     autoSchemaSync: true,
-                }).then(connection => {
-                    return resolve(connection);
-                }, () => {
+                }).then(resolve, () => {
                     createConnection({
                         driver: {
                             type: "websql",
@@ -72,20 +70,18 @@ export class OrmDatabase{
                             logOnlyFailedQueries: true
                         },
                         autoSchemaSync: true,
-                    }).then(connection => {
-                        return resolve(connection);
-                    }, reject)
+                    }).then(resolve, reject)
                 })
             }
         })
     }
-    dropDatabase(){
-        return new Promise<void>((resolve, reject) => {
-            this.getConnection().then(connection =>{
-                connection.dropDatabase().then(()=>{
-                    connection.close().then(resolve,reject)
-                }, reject)
-            },reject)
-        })
-    }
+    // dropDatabase(){
+    //     return new Promise<void>((resolve, reject) => {
+    //         this.getConnection().then(connection =>{
+    //             connection.dropDatabase().then(()=>{
+    //                 connection.close().then(resolve,reject)
+    //             }, reject)
+    //         },reject)
+    //     })
+    // }
 }

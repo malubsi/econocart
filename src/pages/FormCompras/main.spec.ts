@@ -26,4 +26,8 @@ describe('Pages: Forms: Compras', () => {
         expect(instance.textOption(null,null)).toBe('');
         expect(instance.textOption('supermercados',{nome:'asd'})).toBe('asd');
     }));
+
+    it('should save', async(() => {
+        expect(()=>{instance.save()}).toThrow(new TypeError("Cannot read property 'hasOwnProperty' of undefined"));
+    }));
 });

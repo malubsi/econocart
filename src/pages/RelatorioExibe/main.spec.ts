@@ -1,7 +1,6 @@
 import { ComponentFixture, async } from '@angular/core/testing';
 import { TestUtils } from '../../test';
 import { PageRelatorioExibe } from './main';
-import { Necessidade } from '../../entities/Necessidade';
 
 let fixture: ComponentFixture<PageRelatorioExibe> = null;
 let instance: any = null;
