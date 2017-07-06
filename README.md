@@ -39,3 +39,6 @@ o menor valor em cada um dos locais visitados. No fim o responsável deverá sel
 4. Yago Souza
 ####  Pitch
 https://docs.google.com/presentation/d/1r32sdMYDJiVIezoNyPQHDH_mXuX5soIAE_cfvTK4t7M
+
+### Documentação
+https://docs.google.com/document/d/1UVP_9FGIbvHGPPLzLN0JYU1YMQcWx0K9xWY8f1HYBVI/edit?usp=sharing
