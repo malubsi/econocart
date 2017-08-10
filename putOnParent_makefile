@@ -1,0 +1,4 @@
+sign:	
+	touch sign.sh
+	chmod +x sign.sh
+	./sign.sh
