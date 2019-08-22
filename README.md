@@ -1,5 +1,5 @@
 # EconoCart
-Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra.
+Trabalho referente a disciplina de Laboratório de Engenharia de Software (LES) no Instituto Federal do Espirito Santo Campus Serra. Econocart é um aplicativo mobile para auxiliar um dono de comercio na criação de listas de comprar e no comparativo entre diferentes tipos de mercados.
 
 ## Build
 
